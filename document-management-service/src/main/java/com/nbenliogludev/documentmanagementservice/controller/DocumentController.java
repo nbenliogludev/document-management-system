@@ -3,6 +3,7 @@ package com.nbenliogludev.documentmanagementservice.controller;
 import com.nbenliogludev.documentmanagementservice.domain.dto.CreateDocumentRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentSearchRequest;
+import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentHistoryResponse;
 import com.nbenliogludev.documentmanagementservice.service.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -59,5 +61,40 @@ public class DocumentController {
             @ParameterObject DocumentSearchRequest searchRequest,
             @ParameterObject Pageable pageable) {
         return documentService.search(searchRequest, pageable);
+    }
+
+    @Operation(summary = "Submit document", description = "Submits a document for approval.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Document submitted successfully"),
+            @ApiResponse(responseCode = "404", description = "Document not found"),
+            @ApiResponse(responseCode = "409", description = "Invalid status transition")
+    })
+    @PostMapping("/{id}/submit")
+    public DocumentResponse submit(
+            @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id) {
+        return documentService.submit(id);
+    }
+
+    @Operation(summary = "Approve document", description = "Approves a submitted document.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Document approved successfully"),
+            @ApiResponse(responseCode = "404", description = "Document not found"),
+            @ApiResponse(responseCode = "409", description = "Invalid status transition or already approved")
+    })
+    @PostMapping("/{id}/approve")
+    public DocumentResponse approve(
+            @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id) {
+        return documentService.approve(id);
+    }
+
+    @Operation(summary = "Get document history", description = "Retrieves the status transition history of a document.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "History retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "Document not found")
+    })
+    @GetMapping("/{id}/history")
+    public List<DocumentHistoryResponse> getHistory(
+            @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id) {
+        return documentService.getHistory(id);
     }
 }
