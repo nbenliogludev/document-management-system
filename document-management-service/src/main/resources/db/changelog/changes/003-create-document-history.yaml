@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-document-history
+      author: nbenlioglu
+      changes:
+        - createTable:
+            tableName: document_history
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: action
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from_status
+                  type: varchar(50)
+              - column:
+                  name: to_status
+                  type: varchar(50)
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: document_history
+            baseColumnNames: document_id
+            constraintName: fk_document_history_document
+            referencedTableName: documents
+            referencedColumnNames: id
+            onDelete: CASCADE
+        - createIndex:
+            tableName: document_history
+            indexName: idx_document_history_document_id
+            columns:
+              - column:
+                  name: document_id
+        - createIndex:
+            tableName: document_history
+            indexName: idx_document_history_created_at
+            columns:
+              - column:
+                  name: created_at

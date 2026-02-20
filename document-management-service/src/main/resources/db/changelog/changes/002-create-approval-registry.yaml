@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-approval-registry
+      author: nbenlioglu
+      changes:
+        - createTable:
+            tableName: approval_registry
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: approved_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: approval_registry
+            baseColumnNames: document_id
+            constraintName: fk_approval_registry_document
+            referencedTableName: documents
+            referencedColumnNames: id
+            onDelete: CASCADE

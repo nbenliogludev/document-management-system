@@ -63,6 +63,94 @@ class DocumentControllerTest {
 
         mockMvc.perform(get("/api/v1/documents/{id}", randomId))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.error").value("Document with ID " + randomId + " not found"));
+                .andExpect(jsonPath("$.error").value("Not Found"));
+    }
+
+    @Test
+    void submitDocument_ShouldReturn200_WhenDraft() throws Exception {
+        CreateDocumentRequest request = new CreateDocumentRequest();
+        request.setTitle("Draft Doc");
+        request.setAuthor("Test Author");
+
+        String responseStr = mockMvc.perform(post("/api/v1/documents")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andReturn().getResponse().getContentAsString();
+
+        String idStr = objectMapper.readTree(responseStr).get("id").asText();
+        UUID id = UUID.fromString(idStr);
+
+        mockMvc.perform(post("/api/v1/documents/{id}/submit", id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value(DocumentStatus.SUBMITTED.name()));
+    }
+
+    @Test
+    void approveDocument_ShouldReturn200_WhenSubmitted() throws Exception {
+        CreateDocumentRequest request = new CreateDocumentRequest();
+        request.setTitle("Submit Doc");
+        request.setAuthor("Test Author");
+
+        String responseStr = mockMvc.perform(post("/api/v1/documents")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andReturn().getResponse().getContentAsString();
+
+        String idStr = objectMapper.readTree(responseStr).get("id").asText();
+        UUID id = UUID.fromString(idStr);
+
+        mockMvc.perform(post("/api/v1/documents/{id}/submit", id))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value(DocumentStatus.APPROVED.name()));
+    }
+
+    @Test
+    void approveDocument_ShouldReturn409_WhenDraft() throws Exception {
+        CreateDocumentRequest request = new CreateDocumentRequest();
+        request.setTitle("Error Doc");
+        request.setAuthor("Test Author");
+
+        String responseStr = mockMvc.perform(post("/api/v1/documents")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andReturn().getResponse().getContentAsString();
+
+        String idStr = objectMapper.readTree(responseStr).get("id").asText();
+        UUID id = UUID.fromString(idStr);
+
+        mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.error").value("Conflict"))
+                .andExpect(jsonPath("$.message").value(
+                        "Invalid status transition for document " + id + ": cannot transition from DRAFT to APPROVED"));
+    }
+
+    @Test
+    void approveDocument_ShouldReturn409_WhenAlreadyApproved() throws Exception {
+        CreateDocumentRequest request = new CreateDocumentRequest();
+        request.setTitle("Double Approve Doc");
+        request.setAuthor("Test Author");
+
+        String responseStr = mockMvc.perform(post("/api/v1/documents")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andReturn().getResponse().getContentAsString();
+
+        String idStr = objectMapper.readTree(responseStr).get("id").asText();
+        UUID id = UUID.fromString(idStr);
+
+        mockMvc.perform(post("/api/v1/documents/{id}/submit", id))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.error").value("Conflict"))
+                .andExpect(jsonPath("$.message").value("Document " + id + " is already approved."));
     }
 }
