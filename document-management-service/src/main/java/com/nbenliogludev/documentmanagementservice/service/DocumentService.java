@@ -93,6 +93,10 @@ public class DocumentService {
 
     @Transactional
     public DocumentResponse submit(UUID id) {
+        return performSubmit(id);
+    }
+
+    public DocumentResponse performSubmit(UUID id) {
         Document document = documentRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundException(id));
 
@@ -111,6 +115,10 @@ public class DocumentService {
 
     @Transactional
     public DocumentResponse approve(UUID id) {
+        return performApprove(id);
+    }
+
+    public DocumentResponse performApprove(UUID id) {
         Document document = documentRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundException(id));
 
