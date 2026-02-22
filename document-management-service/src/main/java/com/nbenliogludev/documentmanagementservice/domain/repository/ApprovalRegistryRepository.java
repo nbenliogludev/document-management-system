@@ -9,4 +9,6 @@ import java.util.UUID;
 @Repository
 public interface ApprovalRegistryRepository extends JpaRepository<ApprovalRegistry, UUID> {
     boolean existsByDocumentId(UUID documentId);
+
+    long countByDocumentId(UUID documentId);
 }
