@@ -1,11 +1,14 @@
 package com.nbenliogludev.documentmanagementservice.controller;
 
+import com.nbenliogludev.documentmanagementservice.domain.dto.ConcurrencyApproveCheckRequest;
+import com.nbenliogludev.documentmanagementservice.domain.dto.ConcurrencyApproveCheckResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.CreateDocumentRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentSearchRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentHistoryResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchResponse;
+import com.nbenliogludev.documentmanagementservice.service.DocumentConcurrencyCheckService;
 import com.nbenliogludev.documentmanagementservice.service.DocumentService;
 import com.nbenliogludev.documentmanagementservice.service.DocumentBatchService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,6 +35,7 @@ public class DocumentController {
 
         private final DocumentService documentService;
         private final DocumentBatchService documentBatchService;
+        private final DocumentConcurrencyCheckService documentConcurrencyCheckService;
 
         @Operation(summary = "Create a new document", description = "Generates a unique document number automatically and sets the default status to DRAFT.")
         @ApiResponses(value = {
@@ -120,5 +124,19 @@ public class DocumentController {
         public BatchResponse batchApprove(
                         @Valid @RequestBody @Parameter(description = "List of document UUIDs to approve") BatchRequest request) {
                 return documentBatchService.batchApprove(request);
+        }
+
+        @Operation(summary = "Check concurrency handling for document approval", description = "Service endpoint to test race conditions during document approval.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Concurrency check completed successfully, returning results summary"),
+                        @ApiResponse(responseCode = "404", description = "Document not found"),
+                        @ApiResponse(responseCode = "400", description = "Invalid request parameters")
+        })
+        @PostMapping("/{id}/approve/concurrency-check")
+        public ConcurrencyApproveCheckResponse checkApproveConcurrency(
+                        @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id,
+                        @Valid @RequestBody @Parameter(description = "Concurrency configuration (threads and attempts)") ConcurrencyApproveCheckRequest request) {
+                return documentConcurrencyCheckService.runApproveConcurrencyCheck(id, request.getThreads(),
+                                request.getAttempts());
         }
 }

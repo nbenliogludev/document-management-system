@@ -247,4 +247,51 @@ class DocumentControllerTest {
                                 .andExpect(jsonPath("$.results[0].id").value(idStr1))
                                 .andExpect(jsonPath("$.results[0].status").value("ALREADY_APPROVED"));
         }
+
+        @Test
+        void concurrencyCheck_ShouldAllowOnlyOneApproval() throws Exception {
+                CreateDocumentRequest req = new CreateDocumentRequest();
+                req.setTitle("Concurrency Doc");
+                req.setAuthor("Concurrency Author");
+                String responseStr = mockMvc.perform(post("/api/v1/documents")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(req)))
+                                .andReturn().getResponse().getContentAsString();
+                String idStr = objectMapper.readTree(responseStr).get("id").asText();
+
+                // Submit the document DocumentStatus.SUBMITTED
+                mockMvc.perform(post("/api/v1/documents/{id}/submit", idStr))
+                                .andExpect(status().isOk());
+
+                TestTransaction.flagForCommit();
+                TestTransaction.end();
+
+                String concurrencyReq = "{\"threads\": 10, \"attempts\": 30}";
+
+                mockMvc.perform(post("/api/v1/documents/{id}/approve/concurrency-check", idStr)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(concurrencyReq))
+                                .andDo(print())
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.threads").value(10))
+                                .andExpect(jsonPath("$.attempts").value(30))
+                                .andExpect(jsonPath("$.successCount").value(1))
+                                .andExpect(jsonPath("$.conflictCount").value(29))
+                                .andExpect(jsonPath("$.errorCount").value(0))
+                                .andExpect(jsonPath("$.finalDocumentStatus").value("APPROVED"))
+                                .andExpect(jsonPath("$.registryRecordExists").value(true))
+                                .andExpect(jsonPath("$.registryRecordCount").value(1));
+        }
+
+        @Test
+        void concurrencyCheck_ShouldReturn404_WhenDocumentNotFound() throws Exception {
+                UUID randomId = UUID.randomUUID();
+                String concurrencyReq = "{\"threads\": 5, \"attempts\": 10}";
+
+                mockMvc.perform(post("/api/v1/documents/{id}/approve/concurrency-check", randomId)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(concurrencyReq))
+                                .andExpect(status().isNotFound())
+                                .andExpect(jsonPath("$.error").value("Not Found"));
+        }
 }
