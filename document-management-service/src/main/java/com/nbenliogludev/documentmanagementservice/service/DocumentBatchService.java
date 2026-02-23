@@ -22,7 +22,7 @@ public class DocumentBatchService {
 
     public BatchResponse batchSubmit(BatchRequest request) {
         int total = request.getIds().size();
-        log.info("Starting batch submit for {} documents", total);
+        log.debug("Starting batch submit for {} documents", total);
 
         List<BatchItemResult> results = new ArrayList<>();
         int ok = 0;
@@ -44,7 +44,7 @@ public class DocumentBatchService {
                 .failed(failed)
                 .build();
 
-        log.info("Completed batch submit: {} OK, {} failed", ok, failed);
+        log.debug("Completed batch submit: {} OK, {} failed", ok, failed);
         return BatchResponse.builder()
                 .results(results)
                 .summary(summary)
@@ -53,7 +53,7 @@ public class DocumentBatchService {
 
     public BatchResponse batchApprove(BatchRequest request) {
         int total = request.getIds().size();
-        log.info("Starting batch approve for {} documents", total);
+        log.debug("Starting batch approve for {} documents", total);
 
         List<BatchItemResult> results = new ArrayList<>();
         int ok = 0;
@@ -75,7 +75,7 @@ public class DocumentBatchService {
                 .failed(failed)
                 .build();
 
-        log.info("Completed batch approve: {} OK, {} failed", ok, failed);
+        log.debug("Completed batch approve: {} OK, {} failed", ok, failed);
         return BatchResponse.builder()
                 .results(results)
                 .summary(summary)

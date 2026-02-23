@@ -41,6 +41,8 @@ public class DocumentBackgroundWorkers {
             return;
         }
 
+        log.info("[submit-worker] iteration started, batchSize={}", properties.getBatchSize());
+
         try {
             long iterationStartTime = System.currentTimeMillis();
             int maxBatches = properties.getSubmitMaxBatchesPerRun();
@@ -55,7 +57,7 @@ public class DocumentBackgroundWorkers {
 
                 if (draftDocs.isEmpty()) {
                     if (batchesProcessed == 0) {
-                        log.debug("[submit-worker] no draft documents found");
+                        log.info("[submit-worker] no documents found with status=DRAFT");
                     }
                     break;
                 }
@@ -63,9 +65,9 @@ public class DocumentBackgroundWorkers {
                 totalDocumentsFound += draftDocs.size();
 
                 List<UUID> idsToSubmit = draftDocs.stream().map(Document::getId).toList();
+                List<UUID> sampleIds = idsToSubmit.stream().limit(3).toList();
 
-                log.info("[submit-worker] started sub-batch {}/{}; batchSize={}", (i + 1), maxBatches, batchSize);
-                log.info("[submit-worker] fetched {} draft documents: {}", draftDocs.size(), idsToSubmit);
+                log.info("[submit-worker] fetched={} status=DRAFT (sample: {})", draftDocs.size(), sampleIds);
 
                 long callStart = System.currentTimeMillis();
                 try {
@@ -92,8 +94,8 @@ public class DocumentBackgroundWorkers {
             }
 
             if (batchesProcessed > 0) {
-                log.info("[submit-worker] iteration complete. Processed {} sub-batches, total documents {}, took {} ms",
-                        batchesProcessed, totalDocumentsFound, (System.currentTimeMillis() - iterationStartTime));
+                log.info("[submit-worker] iteration finished, tookMs={}",
+                        (System.currentTimeMillis() - iterationStartTime));
             }
 
         } finally {
@@ -112,6 +114,8 @@ public class DocumentBackgroundWorkers {
             return;
         }
 
+        log.info("[approve-worker] iteration started, batchSize={}", properties.getBatchSize());
+
         try {
             long iterationStartTime = System.currentTimeMillis();
             int maxBatches = properties.getApproveMaxBatchesPerRun();
@@ -125,7 +129,7 @@ public class DocumentBackgroundWorkers {
 
                 if (submittedDocs.isEmpty()) {
                     if (batchesProcessed == 0) {
-                        log.debug("[approve-worker] no submitted documents found");
+                        log.info("[approve-worker] no documents found with status=SUBMITTED");
                     }
                     break;
                 }
@@ -133,9 +137,9 @@ public class DocumentBackgroundWorkers {
                 totalDocumentsFound += submittedDocs.size();
 
                 List<UUID> idsToApprove = submittedDocs.stream().map(Document::getId).toList();
+                List<UUID> sampleIds = idsToApprove.stream().limit(3).toList();
 
-                log.info("[approve-worker] started sub-batch {}/{}; batchSize={}", (i + 1), maxBatches, batchSize);
-                log.info("[approve-worker] fetched {} submitted documents: {}", submittedDocs.size(), idsToApprove);
+                log.info("[approve-worker] fetched={} status=SUBMITTED (sample: {})", submittedDocs.size(), sampleIds);
 
                 long callStart = System.currentTimeMillis();
                 try {
@@ -159,9 +163,8 @@ public class DocumentBackgroundWorkers {
             }
 
             if (batchesProcessed > 0) {
-                log.info(
-                        "[approve-worker] iteration complete. Processed {} sub-batches, total documents {}, took {} ms",
-                        batchesProcessed, totalDocumentsFound, (System.currentTimeMillis() - iterationStartTime));
+                log.info("[approve-worker] iteration finished, tookMs={}",
+                        (System.currentTimeMillis() - iterationStartTime));
             }
 
         } finally {

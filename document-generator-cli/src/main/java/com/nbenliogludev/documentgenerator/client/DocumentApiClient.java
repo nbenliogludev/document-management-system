@@ -60,12 +60,13 @@ public class DocumentApiClient {
             if (response.statusCode() == 201 || response.statusCode() == 200) {
                 return true;
             } else {
-                System.err.println("API Error: HTTP " + response.statusCode() + " - " + response.body());
+                System.err.println(
+                        String.format("[generator] API Error: HTTP %d - %s", response.statusCode(), response.body()));
                 return false;
             }
 
         } catch (Exception e) {
-            System.err.println("Request failed: " + e.getMessage());
+            System.err.println("[generator] Request failed: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

@@ -12,21 +12,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DocumentGeneratorApplication {
 
     public static void main(String[] args) {
-        System.out.println("Starting Document Generator CLI...");
-
         GeneratorConfig config = GeneratorConfig.load(args);
-
-        System.out.println("====== Configuration ======");
-        System.out.println("Base URL:      " + config.getBaseUrl());
-        System.out.println("Total Count:   " + config.getCount());
-        System.out.println("Delay (ms):    " + config.getDelayMs());
-        System.out.println("Author Prefix: " + config.getAuthorPrefix());
-        System.out.println("Title Prefix:  " + config.getTitlePrefix());
-        System.out.println("Number Prefix: " + config.getNumberPrefix());
-        System.out.println("===========================\n");
+        System.out.println(
+                String.format("[generator] start: count=%d, baseUrl=%s", config.getCount(), config.getBaseUrl()));
 
         if (config.getCount() <= 0) {
-            System.err.println("Count must be greater than 0. Exiting.");
+            System.err.println("[generator] Count must be greater than 0. Exiting.");
             return;
         }
 
@@ -41,15 +32,17 @@ public class DocumentGeneratorApplication {
             String title = config.getTitlePrefix() + " #" + i;
             String author = config.getAuthorPrefix() + "-" + i;
 
-            System.out.print(String.format("[%d/%d] Generating document '%s'... ", i, config.getCount(), title));
+            System.out.println(String.format("[generator] creating document %d/%d", i, config.getCount()));
 
             boolean success = apiClient.createDocument(title, author);
 
             if (success) {
-                System.out.println("SUCCESS");
+                System.out.println(
+                        String.format("[generator] created document %d/%d title='%s'", i, config.getCount(), title));
                 successCounter.incrementAndGet();
             } else {
-                System.out.println("FAILED");
+                System.err.println(
+                        String.format("[generator] failed document %d/%d title='%s'", i, config.getCount(), title));
                 errorCounter.incrementAndGet();
             }
 
@@ -58,7 +51,7 @@ public class DocumentGeneratorApplication {
                 try {
                     TimeUnit.MILLISECONDS.sleep(config.getDelayMs());
                 } catch (InterruptedException e) {
-                    System.err.println("\nGenerator interrupted!");
+                    System.err.println("\n[generator] interrupted!");
                     Thread.currentThread().interrupt();
                     break;
                 }
@@ -68,11 +61,7 @@ public class DocumentGeneratorApplication {
         long endTime = System.currentTimeMillis();
         long elapsedMs = endTime - startTime;
 
-        System.out.println("\n====== Generation Summary ======");
-        System.out.println("Total Attempts: " + config.getCount());
-        System.out.println("Successful:     " + successCounter.get());
-        System.out.println("Failed:         " + errorCounter.get());
-        System.out.println(String.format("Elapsed Time:   %d.%03d s", elapsedMs / 1000, elapsedMs % 1000));
-        System.out.println("================================\n");
+        System.out.println(String.format("[generator] finished: requested=%d, success=%d, failed=%d, tookMs=%d",
+                config.getCount(), successCounter.get(), errorCounter.get(), elapsedMs));
     }
 }
