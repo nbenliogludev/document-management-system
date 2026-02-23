@@ -1,0 +1,183 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------< com.nbenliogludev:document-management-service >------------
+[INFO] Building document-management-service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.3:run (default-cli) > test-compile @ document-management-service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ document-management-service ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ document-management-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ document-management-service ---
+[INFO] skip non existing resourceDirectory /Users/nikolay/document-management-system/document-management-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ document-management-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.3:run (default-cli) < test-compile @ document-management-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.3:run (default-cli) @ document-management-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-02-23T03:41:57.774+03:00  INFO 76224 --- [           main] n.d.DocumentManagementServiceApplication : Starting DocumentManagementServiceApplication using Java 21.0.4 with PID 76224 (/Users/nikolay/document-management-system/document-management-service/target/classes started by nikolay in /Users/nikolay/document-management-system/document-management-service)
+2026-02-23T03:41:57.776+03:00  INFO 76224 --- [           main] n.d.DocumentManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
+2026-02-23T03:41:58.093+03:00  INFO 76224 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-23T03:41:58.113+03:00  INFO 76224 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2026-02-23T03:41:58.281+03:00  INFO 76224 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-23T03:41:58.287+03:00  INFO 76224 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-23T03:41:58.287+03:00  INFO 76224 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-23T03:41:58.308+03:00  INFO 76224 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 512 ms
+2026-02-23T03:41:58.366+03:00  INFO 76224 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-23T03:41:58.452+03:00  INFO 76224 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@439f2d87
+2026-02-23T03:41:58.453+03:00  INFO 76224 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-23T03:41:58.527+03:00  INFO 76224 --- [           main] liquibase.database                       : Set default schema name to public
+2026-02-23T03:41:58.757+03:00  INFO 76224 --- [           main] liquibase.changelog                      : Reading from public.databasechangelog
+2026-02-23T03:41:58.795+03:00  INFO 76224 --- [           main] liquibase.ui                             : Database is up to date, no changesets to execute
+2026-02-23T03:41:58.796+03:00  INFO 76224 --- [           main] liquibase.changelog                      : Reading from public.databasechangelog
+2026-02-23T03:41:58.800+03:00  INFO 76224 --- [           main] liquibase.util                           : UPDATE SUMMARY
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.util                           : Run:                          0
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.util                           : Previously run:               3
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.util                           : Filtered out:                 0
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.util                           : -------------------------------
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.util                           : Total change sets:            3
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.util                           : Update summary generated
+2026-02-23T03:41:58.801+03:00  INFO 76224 --- [           main] liquibase.command                        : Command execution complete
+2026-02-23T03:41:59.953+03:00  INFO 76224 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-23T03:41:59.985+03:00  INFO 76224 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-02-23T03:42:00.160+03:00  INFO 76224 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-23T03:42:00.197+03:00  INFO 76224 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5433/documents_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 16.12
+	Default catalog/schema: documents_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-23T03:42:00.772+03:00  INFO 76224 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-23T03:42:00.815+03:00  INFO 76224 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-23T03:42:00.921+03:00  INFO 76224 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-23T03:42:01.210+03:00  WARN 76224 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-23T03:42:01.523+03:00  INFO 76224 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-23T03:42:01.528+03:00  INFO 76224 --- [           main] n.d.DocumentManagementServiceApplication : Started DocumentManagementServiceApplication in 4.004 seconds (process running for 4.187)
+2026-02-23T03:42:01.529+03:00  WARN 76224 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-02-23T03:42:01.530+03:00  WARN 76224 --- [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-02-23T03:42:06.552+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:06.892+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:09.898+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:09.911+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:11.533+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:11.538+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:12.917+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:12.922+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:14.543+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:14.558+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:15.925+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:15.928+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:17.564+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:17.570+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:18.930+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:18.938+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:20.576+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:20.580+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:21.943+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:21.948+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:23.585+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:23.590+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:24.057+03:00  INFO 76224 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-23T03:42:24.057+03:00  INFO 76224 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-23T03:42:24.059+03:00  INFO 76224 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-23T03:42:24.146+03:00  INFO 76224 --- [nio-8080-exec-1] c.n.d.service.DocumentService            : Created document. ID: 93f3ab85-a348-486f-8b40-ce0a65ee0078, Number: DOC-20260223-6439
+2026-02-23T03:42:24.204+03:00  INFO 76224 --- [nio-8080-exec-2] c.n.d.service.DocumentService            : Created document. ID: c995452a-beab-4a98-bf24-fb4c3ffd9eed, Number: DOC-20260223-5925
+2026-02-23T03:42:24.212+03:00  INFO 76224 --- [nio-8080-exec-3] c.n.d.service.DocumentService            : Created document. ID: 9c79d773-66af-4084-9d38-c24f06272589, Number: DOC-20260223-2979
+2026-02-23T03:42:24.217+03:00  INFO 76224 --- [nio-8080-exec-4] c.n.d.service.DocumentService            : Created document. ID: 263e78f6-4c72-4536-a1ea-a312c92d1f27, Number: DOC-20260223-8709
+2026-02-23T03:42:24.224+03:00  INFO 76224 --- [nio-8080-exec-5] c.n.d.service.DocumentService            : Created document. ID: 4e57f711-46c7-41be-9210-8d98ed42c19a, Number: DOC-20260223-9409
+2026-02-23T03:42:24.953+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:24.965+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] fetched=5 status=DRAFT (sample: [93f3ab85-a348-486f-8b40-ce0a65ee0078, c995452a-beab-4a98-bf24-fb4c3ffd9eed, 9c79d773-66af-4084-9d38-c24f06272589])
+2026-02-23T03:42:24.980+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 93f3ab85-a348-486f-8b40-ce0a65ee0078 submitted
+2026-02-23T03:42:25.000+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document c995452a-beab-4a98-bf24-fb4c3ffd9eed submitted
+2026-02-23T03:42:25.007+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 9c79d773-66af-4084-9d38-c24f06272589 submitted
+2026-02-23T03:42:25.012+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 263e78f6-4c72-4536-a1ea-a312c92d1f27 submitted
+2026-02-23T03:42:25.017+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 4e57f711-46c7-41be-9210-8d98ed42c19a submitted
+2026-02-23T03:42:25.028+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] batch result: total=5, success=5, error=0, tookMs=63
+2026-02-23T03:42:25.030+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration finished, tookMs=76
+2026-02-23T03:42:26.594+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:26.602+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] fetched=5 status=SUBMITTED (sample: [93f3ab85-a348-486f-8b40-ce0a65ee0078, c995452a-beab-4a98-bf24-fb4c3ffd9eed, 9c79d773-66af-4084-9d38-c24f06272589])
+2026-02-23T03:42:26.634+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 93f3ab85-a348-486f-8b40-ce0a65ee0078 approved
+2026-02-23T03:42:26.649+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document c995452a-beab-4a98-bf24-fb4c3ffd9eed approved
+2026-02-23T03:42:26.659+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 9c79d773-66af-4084-9d38-c24f06272589 approved
+2026-02-23T03:42:26.673+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 263e78f6-4c72-4536-a1ea-a312c92d1f27 approved
+2026-02-23T03:42:26.683+03:00  INFO 76224 --- [   scheduling-1] c.n.d.service.DocumentService            : Document 4e57f711-46c7-41be-9210-8d98ed42c19a approved
+2026-02-23T03:42:26.687+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] batch result: total=5, success=5, error=0, tookMs=85
+2026-02-23T03:42:26.689+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration finished, tookMs=95
+2026-02-23T03:42:28.035+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:28.040+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:29.694+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:29.700+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:31.043+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:31.065+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:32.705+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:32.709+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:34.071+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:34.074+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:35.715+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:35.721+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:37.075+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:37.091+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:38.723+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:38.730+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:40.095+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:40.103+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:41.731+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:41.736+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:43.108+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:43.112+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:44.740+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:44.745+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:46.118+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:46.123+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:47.751+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:47.758+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:49.127+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:49.130+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:50.761+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:50.766+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:52.136+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:52.143+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:53.772+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:53.777+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:55.147+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:55.151+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:56.782+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:56.787+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:42:58.152+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:42:58.158+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:42:59.790+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:42:59.793+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:01.165+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:01.174+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:02.799+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:02.801+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:04.176+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:04.179+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:05.806+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:05.808+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
