@@ -1,5 +1,6 @@
 package com.nbenliogludev.documentmanagementservice.service;
 
+import com.nbenliogludev.documentmanagementservice.domain.dto.BatchDocumentResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.CreateDocumentRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentSearchRequest;
@@ -19,7 +20,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -164,6 +168,40 @@ public class DocumentService {
                         .createdAt(history.getCreatedAt())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public BatchDocumentResponse batchGet(List<UUID> ids, int page, int size, String sortBy, String sortDir) {
+        if (!Arrays.asList("title", "createdAt").contains(sortBy)) {
+            throw new IllegalArgumentException(
+                    "Sorting by '" + sortBy + "' is not supported. Allowed values: [title, createdAt]");
+        }
+
+        Sort.Direction direction = Sort.Direction.fromString(sortDir);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
+
+        log.info("Batch get requested: {} items, page={}, size={}, sortBy={}, sortDir={}",
+                ids.size(), page, size, sortBy, sortDir);
+
+        Page<Document> documentPage = documentRepository.findByIdIn(ids, pageable);
+
+        log.info("Batch get found {} documents (out of {} requested) on page {}/{}",
+                documentPage.getNumberOfElements(), ids.size(), documentPage.getNumber(), documentPage.getTotalPages());
+
+        List<DocumentResponse> content = documentPage.getContent().stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+
+        return BatchDocumentResponse.builder()
+                .content(content)
+                .page(documentPage.getNumber())
+                .size(documentPage.getSize())
+                .totalElements(documentPage.getTotalElements())
+                .totalPages(documentPage.getTotalPages())
+                .sortBy(sortBy)
+                .sortDir(sortDir)
+                .totalRequestedIds(ids.size())
+                .build();
     }
 
     private void createHistoryRecord(UUID documentId, String action, DocumentStatus from, DocumentStatus to) {

@@ -93,7 +93,8 @@ java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
 
 **Примеры тестов через API (Swagger / Curl):**
 - **Concurrency Check Test**: Попробуйте отправить `PUT /api/v1/documents/{id}` с `version: 0`, когда актуальная версия документа в БД уже равна `1`. Вы получите HTTP 409 Conflict.
-- **Batch Endpoint Test**: Передайте список UUID в `/api/v1/documents/batch/submit`. Если 1 ID правильный, а 2-й ошибочный (не найден или уже `SUBMITTED`), сервис вернет 200 OK (Partial Support) со сводкой `total=2, success=1, error=1`.
+- **Batch Submit/Approve Endpoints**: Передайте список UUID в `/api/v1/documents/submit/batch`. Если 1 ID правильный, а 2-й ошибочный (не найден или уже `SUBMITTED`), сервис вернет 200 OK (Partial Support) со сводкой `total=2, success=1, error=1`.
+- **Batch Get Paginated Endpoint**: POST `/api/v1/documents/batch/get?page=0&size=10&sortBy=title&sortDir=asc`. Возвращает документы по переданному пулу UUID-ов, поддерживая пагинацию и безопасную сортировку только по `title` и `createdAt` (в противном случае вернет `400 Bad Request`).
 
 ## Логирование
 

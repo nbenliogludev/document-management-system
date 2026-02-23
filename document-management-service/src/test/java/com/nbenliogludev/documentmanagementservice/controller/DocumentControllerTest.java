@@ -294,4 +294,132 @@ class DocumentControllerTest {
                                 .andExpect(status().isNotFound())
                                 .andExpect(jsonPath("$.error").value("Not Found"));
         }
+
+        @Test
+        void batchGet_ShouldReturnPaginatedResults_WhenIdsProvided() throws Exception {
+                CreateDocumentRequest req1 = new CreateDocumentRequest();
+                req1.setTitle("Batch Get Doc 1");
+                req1.setAuthor("Author 1");
+                String responseStr1 = mockMvc.perform(post("/api/v1/documents")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(req1)))
+                                .andReturn().getResponse().getContentAsString();
+                String idStr1 = objectMapper.readTree(responseStr1).get("id").asText();
+
+                CreateDocumentRequest req2 = new CreateDocumentRequest();
+                req2.setTitle("Batch Get Doc 2");
+                req2.setAuthor("Author 2");
+                String responseStr2 = mockMvc.perform(post("/api/v1/documents")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(req2)))
+                                .andReturn().getResponse().getContentAsString();
+                String idStr2 = objectMapper.readTree(responseStr2).get("id").asText();
+
+                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"]}";
+
+                mockMvc.perform(post("/api/v1/documents/batch/get")
+                                .param("page", "0")
+                                .param("size", "10")
+                                .param("sortBy", "title")
+                                .param("sortDir", "asc")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(batchReq))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.page").value(0))
+                                .andExpect(jsonPath("$.size").value(10))
+                                .andExpect(jsonPath("$.totalElements").value(2))
+                                .andExpect(jsonPath("$.totalPages").value(1))
+                                .andExpect(jsonPath("$.sortBy").value("title"))
+                                .andExpect(jsonPath("$.sortDir").value("asc"))
+                                .andExpect(jsonPath("$.totalRequestedIds").value(2))
+                                .andExpect(jsonPath("$.content[0].title").value("Batch Get Doc 1"))
+                                .andExpect(jsonPath("$.content[1].title").value("Batch Get Doc 2"));
+        }
+
+        @Test
+        void batchGet_ShouldReturnPaginatedResultsDesc_WhenSortedByCreatedAt() throws Exception {
+                CreateDocumentRequest req1 = new CreateDocumentRequest();
+                req1.setTitle("Batch Get Time 1");
+                req1.setAuthor("Author 1");
+                String responseStr1 = mockMvc.perform(post("/api/v1/documents")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(req1)))
+                                .andReturn().getResponse().getContentAsString();
+                String idStr1 = objectMapper.readTree(responseStr1).get("id").asText();
+
+                Thread.sleep(10); // Ensure difference in timestamps
+
+                CreateDocumentRequest req2 = new CreateDocumentRequest();
+                req2.setTitle("Batch Get Time 2");
+                req2.setAuthor("Author 2");
+                String responseStr2 = mockMvc.perform(post("/api/v1/documents")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(req2)))
+                                .andReturn().getResponse().getContentAsString();
+                String idStr2 = objectMapper.readTree(responseStr2).get("id").asText();
+
+                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"]}";
+
+                // Default sorting is createdAt desc (newest first)
+                mockMvc.perform(post("/api/v1/documents/batch/get")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(batchReq))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.sortBy").value("createdAt"))
+                                .andExpect(jsonPath("$.sortDir").value("desc"))
+                                .andExpect(jsonPath("$.content[0].title").value("Batch Get Time 2"))
+                                .andExpect(jsonPath("$.content[1].title").value("Batch Get Time 1"));
+        }
+
+        @Test
+        void batchGet_ShouldReturn400_WhenInvalidSortByIsRequested() throws Exception {
+                String batchReq = "{\"ids\": [\"" + UUID.randomUUID() + "\"]}";
+
+                mockMvc.perform(post("/api/v1/documents/batch/get")
+                                .param("sortBy", "author") // Invalid sort field
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(batchReq))
+                                .andExpect(status().isBadRequest())
+                                .andExpect(jsonPath("$.error").value("Bad Request"))
+                                .andExpect(jsonPath("$.message")
+                                                .value("Sorting by 'author' is not supported. Allowed values: [title, createdAt]"));
+        }
+
+        @Test
+        void batchGet_ShouldReturnOnlyFoundIds_WhenPartialMatchesOccur() throws Exception {
+                CreateDocumentRequest req1 = new CreateDocumentRequest();
+                req1.setTitle("Valid Document");
+                req1.setAuthor("Existing Author");
+                String responseStr1 = mockMvc.perform(post("/api/v1/documents")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(req1)))
+                                .andReturn().getResponse().getContentAsString();
+                String validId = objectMapper.readTree(responseStr1).get("id").asText();
+
+                UUID unknownId = UUID.randomUUID();
+
+                String batchReq = "{\"ids\": [\"" + validId + "\", \"" + unknownId + "\"]}";
+
+                mockMvc.perform(post("/api/v1/documents/batch/get")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(batchReq))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.totalElements").value(1))
+                                .andExpect(jsonPath("$.totalRequestedIds").value(2))
+                                .andExpect(jsonPath("$.content[0].id").value(validId));
+        }
+
+        @Test
+        void batchGet_ShouldReturnEmptyPage_WhenNoValidIdsFound() throws Exception {
+                String batchReq = "{\"ids\": [\"" + UUID.randomUUID() + "\", \"" + UUID.randomUUID() + "\"]}";
+
+                mockMvc.perform(post("/api/v1/documents/batch/get")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(batchReq))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.totalElements").value(0))
+                                .andExpect(jsonPath("$.totalPages").value(0))
+                                .andExpect(jsonPath("$.totalRequestedIds").value(2))
+                                .andExpect(jsonPath("$.content").isEmpty());
+        }
 }
