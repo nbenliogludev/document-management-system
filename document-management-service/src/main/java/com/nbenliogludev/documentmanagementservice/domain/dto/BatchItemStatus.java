@@ -5,5 +5,6 @@ public enum BatchItemStatus {
     NOT_FOUND,
     INVALID_STATUS,
     ALREADY_APPROVED,
+    CONFLICT,
     ERROR
 }

@@ -32,10 +32,15 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.NOT_FOUND, "Not Found", ex.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler({ InvalidDocumentStatusException.class, DocumentAlreadyApprovedException.class })
+    @ExceptionHandler({ InvalidDocumentStatusException.class, DocumentAlreadyApprovedException.class,
+            org.springframework.orm.ObjectOptimisticLockingFailureException.class })
     public ResponseEntity<Map<String, Object>> handleConflictExceptions(RuntimeException ex,
             HttpServletRequest request) {
-        return buildErrorResponse(HttpStatus.CONFLICT, "Conflict", ex.getMessage(), request.getRequestURI());
+        String message = ex.getMessage();
+        if (ex instanceof org.springframework.orm.ObjectOptimisticLockingFailureException) {
+            message = "Concurrent modification detected. The document was updated by another transaction.";
+        }
+        return buildErrorResponse(HttpStatus.CONFLICT, "Conflict", message, request.getRequestURI());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
