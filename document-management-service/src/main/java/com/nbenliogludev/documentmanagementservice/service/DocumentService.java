@@ -109,7 +109,13 @@ public class DocumentService {
         }
 
         document.setStatus(DocumentStatus.SUBMITTED);
-        Document saved = documentRepository.save(document);
+        Document saved;
+        try {
+            saved = documentRepository.saveAndFlush(document);
+        } catch (org.springframework.orm.ObjectOptimisticLockingFailureException ex) {
+            log.warn("Document {} state modified concurrently during submit", id);
+            throw new InvalidDocumentStatusException(id, document.getStatus().name(), DocumentStatus.SUBMITTED.name());
+        }
 
         createHistoryRecord(saved.getId(), "SUBMITTED", DocumentStatus.DRAFT, DocumentStatus.SUBMITTED);
 
@@ -135,7 +141,14 @@ public class DocumentService {
         }
 
         document.setStatus(DocumentStatus.APPROVED);
-        Document saved = documentRepository.save(document);
+        Document saved;
+
+        try {
+            saved = documentRepository.saveAndFlush(document);
+        } catch (org.springframework.orm.ObjectOptimisticLockingFailureException ex) {
+            log.warn("Document {} already modified concurrently during approval", id);
+            throw new DocumentAlreadyApprovedException(id);
+        }
 
         try {
             ApprovalRegistry registry = new ApprovalRegistry();

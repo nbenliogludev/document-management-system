@@ -41,6 +41,9 @@ public class DocumentBatchProcessor {
         } catch (DocumentAlreadyApprovedException e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return buildErrorResult(id, BatchItemStatus.ALREADY_APPROVED, "already approved");
+        } catch (org.springframework.orm.ObjectOptimisticLockingFailureException e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return buildErrorResult(id, BatchItemStatus.CONFLICT, "concurrent modification detected");
         } catch (Exception e) {
             log.error("Unexpected error processing document submit {}", id, e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -67,6 +70,9 @@ public class DocumentBatchProcessor {
         } catch (DocumentAlreadyApprovedException e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return buildErrorResult(id, BatchItemStatus.ALREADY_APPROVED, "already approved");
+        } catch (org.springframework.orm.ObjectOptimisticLockingFailureException e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return buildErrorResult(id, BatchItemStatus.CONFLICT, "concurrent modification detected");
         } catch (Exception e) {
             log.error("Unexpected error processing document approve {}", id, e);
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
