@@ -1,63 +1,63 @@
 # Document Management System (Test Assignment)
 
-## Краткое описание
-Проект представляет собой серверное приложение для управления жизненным циклом документов. Поддерживаются статусы `DRAFT`, `SUBMITTED`, и `APPROVED`. Система реализует транзакционные операции одиночной и поточной (batch) передачи статусов, защиту паралельного редактирования (Concurrency Check), а также фоновую обработку документов scheduled worker-ами (из `DRAFT` в `APPROVED`). 
+## Brief Description
+The project is a server-side application for managing the document lifecycle. It supports `DRAFT`, `SUBMITTED`, and `APPROVED` statuses. The system implements transactional single and batch status transfer operations, parallel editing protection (Concurrency Check), as well as background processing of documents by scheduled workers (from `DRAFT` to `APPROVED`).
 
-В комплекте поставляется отдельный Java CLI утилита (`document-generator-cli`) для быстрой поточной генерации тестовых данных.
+A separate Java CLI utility (`document-generator-cli`) is included for the rapid batch generation of test data.
 
-## Реализованный функционал
-- Управление документами (Create, Read, Search).
-- Переходы по жизненному циклу: одиночные `submit` и `approve`.
-- Пакетная обработка: `batch submit` и `batch approve` с обработкой "частичного успеха" (Partial Success) без обрыва транзакций из-за единичных ошибок.
-- Ведение истории: `Approval Registry` и `Document History` для аудита статусов.
-- Concurrency Check API (защита от записи старых версий).
-- Фоновые worker-ы:
-  - `submit-worker` (автоматика `DRAFT` -> `SUBMITTED`)
-  - `approve-worker` (автоматика `SUBMITTED` -> `APPROVED`)
-- CLI Generator утилита для тестирования нагрузки (через HTTP API).
+## Implemented Features
+- Document Management (Create, Read, Search).
+- Lifecycle transitions: single `submit` and `approve`.
+- Batch processing: `batch submit` and `batch approve` with "Partial Success" handling without transaction interruption due to single errors.
+- History tracking: `Approval Registry` and `Document History` for status audit.
+- Concurrency Check API (protection against writing outdated versions).
+- Background workers:
+  - `submit-worker` (automatic `DRAFT` -> `SUBMITTED`)
+  - `approve-worker` (automatic `SUBMITTED` -> `APPROVED`)
+- CLI Generator utility for load testing (via HTTP API).
 
-## Технологии
+## Technologies
 - Java 21
 - Spring Boot 3
 - Spring Data JPA / Hibernate
-- PostgreSQL (через Docker Compose)
-- Liquibase (Автоматические миграции БД)
-- OpenAPI / Swagger (Интерактивная документация)
+- PostgreSQL (via Docker Compose)
+- Liquibase (Automatic DB migrations)
+- OpenAPI / Swagger (Interactive documentation)
 - Maven
 - Docker / Docker Compose
 
-## Структура проекта
+## Project Structure
 ```
 /document-management-system
-├── /document-management-service     # Основной Spring Boot backend
-├── /document-generator-cli          # Независимая Java CLI для генерации данных
+├── /document-management-service     # Main Spring Boot backend
+├── /document-generator-cli          # Independent Java CLI for data generation
 └── docker-compose.yml               # PostgreSQL DB 
 ```
 
-## Как запустить
+## How to Run
 
-### 1. Запуск БД
-Из корня проекта поднимите PostgreSQL базу данных:
+### 1. Start the DB
+From the project root, start the PostgreSQL database:
 ```bash
 docker compose up -d
 ```
 
-### 2. Запуск сервиса
-Перейдите в директорию бекенда и запустите приложение через maven wrapper:
+### 2. Start the Service
+Navigate to the backend directory and launch the application via the maven wrapper:
 ```bash
 cd document-management-service
 ./mvnw spring-boot:run
 ```
-*Примечание: Liquibase автоматически накатит схемы при старте.*
+*Note: Liquibase will automatically apply schemas on startup.*
 
 ### 3. Swagger
-Интерактивная документация доступна по адресу:
+Interactive documentation is available at:
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-## Конфигурация
-Ключевые настройки `document-management-service` (`application.yml`):
-- База данных: URL `jdbc:postgresql://localhost:5433/documents_db`.
-- Фоновые Background Worker-ы:
+## Configuration
+Key settings for `document-management-service` (`application.yml`):
+- Database: URL `jdbc:postgresql://localhost:5433/documents_db`.
+- Background Workers:
   ```yaml
   app:
     workers:
@@ -67,42 +67,42 @@ cd document-management-service
       approve-interval-ms: 15000
   ```
 
-## Как запустить CLI-генератор
+## How to Run the CLI Generator
 
-Генератор собран в независимый fat JAR.
+The generator is packaged as an independent fat JAR.
 
-**1. Как собрать:**
+**1. How to build:**
 ```bash
 cd document-generator-cli
 mvn clean package
 ```
 
-**2. Как запустить:**
-Запуск генерации $N$ документов через конфигурационный аргумент `--count`:
+**2. How to run:**
+Launch the generation of $N$ documents via the `--count` configuration argument:
 ```bash
 java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
 ```
 
-## Примеры API / сценарий проверки
+## API Examples / Verification Scenario
 
-**Сценарий:**
-1. Поднимите БД и запустите сервис.
-2. Сгенерируйте данные через CLI: `java -jar document-generator-cli/target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=20`.
-3. Откройте `app.log` или консоль Spring Boot: вы увидите, как `submit-worker` подхватывает `DRAFT` батчами и переводит в `SUBMITTED`. Затем `approve-worker` подхватит их и переведет в `APPROVED`.
-4. Откройте Swagger UI и запросите `GET /api/v1/documents`. Вы увидите созданные документы со статусом `APPROVED`.
+**Scenario:**
+1. Start the DB and launch the service.
+2. Generate data via the CLI: `java -jar document-generator-cli/target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=20`.
+3. Open `app.log` or the Spring Boot console: you will see how the `submit-worker` picks up `DRAFT`s in batches and transitions them to `SUBMITTED`. Then the `approve-worker` will pick them up and transition them to `APPROVED`.
+4. Open the Swagger UI and request `GET /api/v1/documents`. You will see the created documents with the `APPROVED` status.
 
-**Примеры тестов через API (Swagger / Curl):**
-- **Concurrency Check Test**: Попробуйте отправить `PUT /api/v1/documents/{id}` с `version: 0`, когда актуальная версия документа в БД уже равна `1`. Вы получите HTTP 409 Conflict.
-- **Batch Submit/Approve Endpoints**: Передайте список UUID в `/api/v1/documents/submit/batch`. Если 1 ID правильный, а 2-й ошибочный (не найден или уже `SUBMITTED`), сервис вернет 200 OK (Partial Support) со сводкой `total=2, success=1, error=1`.
-- **Batch Get Paginated Endpoint**: POST `/api/v1/documents/batch/get?page=0&size=10&sortBy=title&sortDir=asc`. Возвращает документы по переданному пулу UUID-ов, поддерживая пагинацию и безопасную сортировку только по `title` и `createdAt` (в противном случае вернет `400 Bad Request`).
+**API Test Examples (Swagger / Curl):**
+- **Concurrency Check Test**: Try to send a `PUT /api/v1/documents/{id}` with `version: 0` when the actual document version in the DB is already `1`. You will receive an HTTP 409 Conflict.
+- **Batch Submit/Approve Endpoints**: Pass a list of UUIDs to `/api/v1/documents/submit/batch`. If the 1st ID is correct, and the 2nd is erroneous (not found or already `SUBMITTED`), the service will return 200 OK (Partial Support) with a summary `total=2, success=1, error=1`.
+- **Batch Get Paginated Endpoint**: POST `/api/v1/documents/batch/get?page=0&size=10&sortBy=title&sortDir=asc`. Returns documents by the provided pool of UUIDs, supporting pagination and safe sorting only by `title` and `createdAt` (otherwise returns `400 Bad Request`).
 
-## Логирование
+## Logging
 
-Работа организована в минималистичном формате без лишнего спама.
-- **CLI**: Выводит `[generator] creating document 1/N` и итоговую сводку `[generator] finished: requested=X, success=Y, failed=Z, tookMs=...`.
-- **Workers**: Показывают старт итерации, короткий сэмпл UUID (первые 3), и сводку результатов батча `[worker] batch result: total=X, success=Y, error=Z, tookMs=...`. При пустой базе спам гасится уведомлением `no documents found`.
+The logging is structured in a minimalistic format without unnecessary spam.
+- **CLI**: Outputs `[generator] creating document 1/N` and a final summary `[generator] finished: requested=X, success=Y, failed=Z, tookMs=...`.
+- **Workers**: Show the start of the iteration, a short sample of UUIDs (first 3), and a summary of the batch results `[worker] batch result: total=X, success=Y, error=Z, tookMs=...`. If the database is empty, spam is suppressed with the message `no documents found`.
 
-## Ограничения / допущения
-- Локальный запуск (тестовое задание) без внешних S3 buckets хранения бинарных данных, хранятся только метаданные.
-- Авторизация не предусмотрена (открытый API) в угоду фокусу на транзакционную безопасность.
-- Внешний Message Broker (Kafka/RabbitMQ) для Background Workers не использован, реализована родная schedule-архитектура на базе БД для Zero-Dependency запуска проекта.
+## Limitations / Assumptions
+- Local execution (test assignment) without external S3 buckets for storing binary data, only metadata is stored.
+- Authorization is not provided (open API) to focus on transactional security.
+- An external Message Broker (Kafka/RabbitMQ) for Background Workers was not used; a native schedule-architecture based on the DB was implemented for a Zero-Dependency project launch.
