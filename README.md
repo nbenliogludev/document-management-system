@@ -101,8 +101,3 @@ java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
 The logging is structured in a minimalistic format without unnecessary spam.
 - **CLI**: Outputs `[generator] creating document 1/N` and a final summary `[generator] finished: requested=X, success=Y, failed=Z, tookMs=...`.
 - **Workers**: Show the start of the iteration, a short sample of UUIDs (first 3), and a summary of the batch results `[worker] batch result: total=X, success=Y, error=Z, tookMs=...`. If the database is empty, spam is suppressed with the message `no documents found`.
-
-## Limitations / Assumptions
-- Local execution (test assignment) without external S3 buckets for storing binary data, only metadata is stored.
-- Authorization is not provided (open API) to focus on transactional security.
-- An external Message Broker (Kafka/RabbitMQ) for Background Workers was not used; a native schedule-architecture based on the DB was implemented for a Zero-Dependency project launch.
