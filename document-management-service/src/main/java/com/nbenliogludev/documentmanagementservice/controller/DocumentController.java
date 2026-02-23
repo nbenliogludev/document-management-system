@@ -139,4 +139,19 @@ public class DocumentController {
                 return documentConcurrencyCheckService.runApproveConcurrencyCheck(id, request.getThreads(),
                                 request.getAttempts());
         }
+
+        @Operation(summary = "Batch get documents", description = "Retrieves a batch of documents by their identifiers, applying optional pagination and restricted sorting constraints.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Documents retrieved successfully. Total metadata matches the requested dataset size even if partial items are missing."),
+                        @ApiResponse(responseCode = "400", description = "Invalid request payload or unauthorized sorting fields requested")
+        })
+        @PostMapping("/batch/get")
+        public com.nbenliogludev.documentmanagementservice.domain.dto.BatchDocumentResponse batchGet(
+                        @Valid @RequestBody @Parameter(description = "List of document UUIDs to retrieve", required = true) BatchRequest request,
+                        @RequestParam(defaultValue = "0") @Parameter(description = "Page number to retrieve (0-based)") int page,
+                        @RequestParam(defaultValue = "20") @Parameter(description = "Number of items per page") int size,
+                        @RequestParam(defaultValue = "createdAt") @Parameter(description = "Field to sort by (allowed: title, createdAt)") String sortBy,
+                        @RequestParam(defaultValue = "desc") @Parameter(description = "Sort direction (allowed: asc, desc)") String sortDir) {
+                return documentService.batchGet(request.getIds(), page, size, sortBy, sortDir);
+        }
 }
