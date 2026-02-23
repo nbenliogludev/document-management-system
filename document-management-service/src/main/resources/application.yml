@@ -18,3 +18,12 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
+
+app:
+  workers:
+    enabled: true
+    batch-size: 20
+    submit-interval-ms: 3000
+    approve-interval-ms: 3000
+    submit-max-batches-per-run: 5
+    approve-max-batches-per-run: 5
