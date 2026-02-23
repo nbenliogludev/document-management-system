@@ -181,3 +181,840 @@
 2026-02-23T03:43:04.179+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
 2026-02-23T03:43:05.806+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
 2026-02-23T03:43:05.808+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:07.188+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:07.193+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:08.809+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:08.821+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:10.196+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:10.200+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:11.827+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:11.832+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:13.202+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:13.206+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:14.837+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:14.848+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:16.211+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:16.219+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:17.853+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:17.865+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:19.224+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:19.228+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:20.871+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:20.879+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:22.232+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:22.238+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:23.884+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:23.886+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:25.244+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:25.259+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:26.889+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:26.893+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:28.263+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:28.269+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:29.898+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:29.912+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:31.273+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:31.277+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:32.918+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:32.924+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:34.278+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:34.285+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:35.929+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:35.934+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:37.293+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:37.299+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:38.938+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:38.948+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:40.300+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:40.304+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:41.951+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:41.953+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:43.304+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:43.306+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:44.959+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:44.965+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:46.309+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:46.315+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:47.968+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:47.972+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:49.321+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:49.330+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:50.975+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:50.980+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:52.335+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:52.340+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:53.984+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:53.987+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:55.345+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:55.350+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:43:56.991+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:43:56.997+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:43:58.353+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:43:58.357+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:00.003+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:00.008+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:44:01.363+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:01.367+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:03.010+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:03.024+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@439f2d87 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.027+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3b1a1796 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.027+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@58bb7c0 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3adcc1d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@209dd22f (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@4b50d70d (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@13bd5c10 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7e1da75e (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@30df1e18 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:03.028+03:00  WARN 76224 --- [   scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7dfa4fb1 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
+2026-02-23T03:44:18.221+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:18.221+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:18.235+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runApproveWorker(DocumentBackgroundWorkers.java:127) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:18.254+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:18.256+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:18.257+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:18.257+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runSubmitWorker(DocumentBackgroundWorkers.java:55) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:21.259+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:21.264+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:21.264+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:21.265+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runApproveWorker(DocumentBackgroundWorkers.java:127) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:21.268+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:21.271+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:21.272+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:21.272+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runSubmitWorker(DocumentBackgroundWorkers.java:55) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:24.273+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:24.281+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:24.281+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:24.281+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runApproveWorker(DocumentBackgroundWorkers.java:127) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:24.282+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:24.283+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:24.283+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:24.283+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runSubmitWorker(DocumentBackgroundWorkers.java:55) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:27.284+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:27.287+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:27.287+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:27.287+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runApproveWorker(DocumentBackgroundWorkers.java:127) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:27.288+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:27.289+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 42P01
+2026-02-23T03:44:27.289+03:00  WARN 76224 --- [   scheduling-1] org.hibernate.orm.jdbc.error             : ERROR: relation "documents" does not exist
+  Position: 113
+2026-02-23T03:44:27.290+03:00 ERROR 76224 --- [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]; SQL [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:156) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.convertHibernateAccessException(HibernateExceptionTranslator.java:131) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.hibernate.HibernateExceptionTranslator.translateExceptionIfPossible(HibernateExceptionTranslator.java:105) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:223) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:576) ~[spring-orm-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:346) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:157) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:137) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy155.findByStatusOrderByCreatedAtAsc(Unknown Source) ~[na:na]
+	at com.nbenliogludev.documentmanagementservice.worker.DocumentBackgroundWorkers.runSubmitWorker(DocumentBackgroundWorkers.java:55) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at io.micrometer.observation.Observation.observe(Observation.java:564) ~[micrometer-observation-1.16.3.jar:1.16.3]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88) ~[spring-context-7.0.5.jar:7.0.5]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-7.0.5.jar:7.0.5]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.hibernate.exception.SQLGrammarException: JDBC exception executing SQL [ERROR: relation "documents" does not exist
+  Position: 113] [select d1_0.id,d1_0.author,d1_0.created_at,d1_0.number,d1_0.status,d1_0.title,d1_0.updated_at,d1_0.version from documents d1_0 where d1_0.status=? order by d1_0.created_at fetch first ? rows only]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:290) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:190) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.<init>(JdbcValuesResultSetImpl.java:71) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValues(JdbcSelectExecutorStandardImpl.java:393) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:354) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:135) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:100) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.executeQuery(JdbcSelectExecutor.java:63) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:137) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$1(ConcreteSqmSelectQueryPlan.java:128) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:427) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:355) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.sqm.internal.SqmQueryImpl.doList(SqmQueryImpl.java:374) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:153) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:121) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:557) ~[spring-orm-7.0.5.jar:7.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy173.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:132) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:99) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:164) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:154) ~[spring-data-jpa-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:169) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:167) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:146) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69) ~[spring-data-commons-4.0.3.jar:4.0.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.5.jar:7.0.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.5.jar:7.0.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:135) ~[spring-tx-7.0.5.jar:7.0.5]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents" does not exist
+  Position: 113
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2875) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2560) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:429) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:526) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:436) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:271) ~[hibernate-core-7.2.4.Final.jar:7.2.4.Final]
+	... 54 common frames omitted
+
+2026-02-23T03:44:30.293+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:30.311+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:44:30.312+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:30.315+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:33.313+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:33.322+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:44:33.322+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:33.326+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:36.327+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:36.330+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:44:36.331+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:36.332+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:39.334+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:39.337+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:44:39.337+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:39.338+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:42.342+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] iteration started, batchSize=20
+2026-02-23T03:44:42.349+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [approve-worker] no documents found with status=SUBMITTED
+2026-02-23T03:44:42.349+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] iteration started, batchSize=20
+2026-02-23T03:44:42.352+03:00  INFO 76224 --- [   scheduling-1] c.n.d.worker.DocumentBackgroundWorkers   : [submit-worker] no documents found with status=DRAFT
+2026-02-23T03:44:45.267+03:00  INFO 76224 --- [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-23T03:44:45.274+03:00  INFO 76224 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-23T03:44:45.278+03:00  INFO 76224 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-23T03:44:45.281+03:00  INFO 76224 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-23T03:44:45.284+03:00  INFO 76224 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
