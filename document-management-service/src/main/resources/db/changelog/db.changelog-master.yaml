@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/changes/002-create-approval-registry.yaml
   - include:
       file: db/changelog/changes/003-create-document-history.yaml
+  - include:
+      file: db/changelog/changes/004-create-outbox-events.yaml

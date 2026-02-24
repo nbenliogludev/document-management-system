@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-outbox-events
+      author: antigravity
+      changes:
+        - createTable:
+            tableName: outbox_events
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: aggregate_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: aggregate_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: event_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payload
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: retry_count
+                  type: INT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: next_retry_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_error
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_outbox_events_status
+            tableName: outbox_events
+            columns:
+              - column:
+                  name: status
+        - createIndex:
+            indexName: idx_outbox_events_next_retry_at
+            tableName: outbox_events
+            columns:
+              - column:
+                  name: next_retry_at
+        - createIndex:
+            indexName: idx_outbox_events_created_at
+            tableName: outbox_events
+            columns:
+              - column:
+                  name: created_at
+        - createIndex:
+            indexName: idx_outbox_events_polling
+            tableName: outbox_events
+            columns:
+              - column:
+                  name: status
+              - column:
+                  name: next_retry_at
+              - column:
+                  name: created_at
