@@ -4,5 +4,7 @@ public enum OutboxEventStatus {
     NEW,
     PROCESSING,
     SENT,
-    FAILED
+    FAILED,
+    FAILED_PERMANENT,
+    COMPENSATED
 }

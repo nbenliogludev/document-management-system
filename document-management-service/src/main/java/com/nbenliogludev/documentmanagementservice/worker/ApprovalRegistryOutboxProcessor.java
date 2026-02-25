@@ -59,7 +59,7 @@ public class ApprovalRegistryOutboxProcessor {
         event.setUpdatedAt(Instant.now());
 
         if (event.getRetryCount() >= properties.getMaxRetries()) {
-            event.setStatus(OutboxEventStatus.FAILED);
+            event.setStatus(OutboxEventStatus.FAILED_PERMANENT);
             event.setNextRetryAt(null);
             log.error("Outbox event {} permanently failed after {} retries", event.getId(), event.getRetryCount());
         } else {

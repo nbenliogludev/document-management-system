@@ -13,4 +13,12 @@ public class OutboxProperties {
     private int batchSize = 50;
     private int maxRetries = 10;
     private long retryBackoffMs = 5000;
+    private Compensation compensation = new Compensation();
+
+    @Data
+    public static class Compensation {
+        private boolean enabled = true;
+        private int fixedDelayMs = 5000;
+        private int batchSize = 50;
+    }
 }
