@@ -14,6 +14,7 @@ A separate Java CLI utility (`document-generator-cli`) is included for the rapid
 - Background workers:
   - `submit-worker` (automatic `DRAFT` -> `SUBMITTED`)
   - `approve-worker` (automatic `SUBMITTED` -> `APPROVED`)
+  - `outbox-worker` (eventual consistency event publisher for the Approval Registry)
 - CLI Generator utility for load testing (via HTTP API).
 
 ## Technologies
@@ -27,22 +28,24 @@ A separate Java CLI utility (`document-generator-cli`) is included for the rapid
 - Docker / Docker Compose
 
 ## Project Structure
-```
+```text
 /document-management-system
-├── /document-management-service     # Main Spring Boot backend
+├── /document-management-service     # Main Spring Boot backend API
+├── /approval-registry-grpc-service  # Independent gRPC Microservice for Approvals
 ├── /document-generator-cli          # Independent Java CLI for data generation
-└── docker-compose.yml               # PostgreSQL DB 
+└── docker-compose.yml               # PostgreSQL DBs (Main + Registry)
 ```
 
 ## How to Run
 
-### 1. Start the DB
-From the project root, start the PostgreSQL database:
+### 1. Start the DBs & gRPC Service
+From the project root, start the PostgreSQL databases and the gRPC application container:
 ```bash
 docker compose up -d
 ```
+*This will spin up `documents-postgres` (5433), `approval-registry-postgres` (5434), and the `approval-registry-grpc-service` container (9090).*
 
-### 2. Start the Service
+### 2. Start the Main API Service
 Navigate to the backend directory and launch the application via the maven wrapper:
 ```bash
 cd document-management-service
@@ -57,14 +60,20 @@ Interactive documentation is available at:
 ## Configuration
 Key settings for `document-management-service` (`application.yml`):
 - Database: URL `jdbc:postgresql://localhost:5433/documents_db`.
+- Approval Registry Mode (`app.approval-registry.mode`): `local` (uses local DB) or `grpc` (calls the external remote gRPC service via port 9090).
 - Background Workers:
-  ```yaml
   app:
     workers:
       enabled: true
       batch-size: 20
       submit-interval-ms: 10000
       approve-interval-ms: 15000
+    outbox:
+      enabled: true
+      batch-size: 50
+      polling-interval-ms: 5000
+      max-retries: 3
+      retry-backoff-ms: 2000
   ```
 
 ## How to Run the CLI Generator

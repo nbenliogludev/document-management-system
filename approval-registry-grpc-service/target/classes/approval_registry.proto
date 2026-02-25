@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package com.nbenliogludev.approvalregistry.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.nbenliogludev.approvalregistry.grpc";
+option java_outer_classname = "ApprovalRegistryProto";
+
+import "google/protobuf/timestamp.proto";
+
+service ApprovalRegistryService {
+    rpc CreateApprovalRecord (CreateApprovalRecordRequest) returns (CreateApprovalRecordResponse);
+    rpc ExistsByDocumentId (ExistsByDocumentIdRequest) returns (ExistsByDocumentIdResponse);
+    rpc CountByDocumentId (CountByDocumentIdRequest) returns (CountByDocumentIdResponse);
+}
+
+message CreateApprovalRecordRequest {
+    string document_id = 1;
+    google.protobuf.Timestamp approved_at = 2;
+}
+
+message CreateApprovalRecordResponse {
+    bool success = 1;
+    string id = 2;
+}
+
+message ExistsByDocumentIdRequest {
+    string document_id = 1;
+}
+
+message ExistsByDocumentIdResponse {
+    bool exists = 1;
+}
+
+message CountByDocumentIdRequest {
+    string document_id = 1;
+}
+
+message CountByDocumentIdResponse {
+    int64 count = 1;
+}
