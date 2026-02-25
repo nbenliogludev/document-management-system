@@ -1,6 +1,6 @@
 package com.nbenliogludev.documentmanagementservice.worker;
 
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nbenliogludev.documentmanagementservice.domain.dto.ApprovalRegistryCreatePayload;
 import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEvent;
 import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEventStatus;
@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "app.outbox.compensation.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "app.outbox.worker.compensation.enabled", havingValue = "true")
 public class ApprovalRegistryCompensationWorker {
 
     private final OutboxEventRepository outboxEventRepository;
@@ -27,7 +27,7 @@ public class ApprovalRegistryCompensationWorker {
     private final OutboxProperties properties;
     private final ObjectMapper objectMapper;
 
-    @Scheduled(fixedDelayString = "${app.outbox.compensation.fixed-delay-ms:5000}")
+    @Scheduled(fixedDelayString = "${app.outbox.worker.compensation.fixed-delay-ms:5000}")
     public void processCompensations() {
         long startTime = System.currentTimeMillis();
         int batchSize = properties.getCompensation().getBatchSize();
@@ -49,20 +49,33 @@ public class ApprovalRegistryCompensationWorker {
             try {
                 ApprovalRegistryCreatePayload payload = objectMapper.readValue(event.getPayload(),
                         ApprovalRegistryCreatePayload.class);
-                boolean success = compensationService.compensateApprovalRegistryFailure(payload.getDocumentId(),
-                        event.getId());
+                DocumentApprovalCompensationService.CompensationResult result = compensationService
+                        .compensateApprovalRegistryFailure(payload.getDocumentId(),
+                                event.getId());
 
-                if (success) {
+                if (result == DocumentApprovalCompensationService.CompensationResult.COMPENSATED) {
                     event.setStatus(OutboxEventStatus.COMPENSATED);
                     event.setUpdatedAt(Instant.now());
                     outboxEventRepository.save(event);
                     log.info("Outbox event {} marked as COMPENSATED successfully.", event.getId());
                     compensated++;
+                } else if (result == DocumentApprovalCompensationService.CompensationResult.SKIPPED) {
+                    event.setStatus(OutboxEventStatus.COMPENSATION_SKIPPED);
+                    event.setUpdatedAt(Instant.now());
+                    outboxEventRepository.save(event);
+                    log.info("Outbox event {} marked as COMPENSATION_SKIPPED.", event.getId());
+                    skippedOrFailed++;
                 } else {
-                    log.warn("Outbox event {} compensation skipped or failed safely.", event.getId());
+                    event.setStatus(OutboxEventStatus.COMPENSATION_FAILED);
+                    event.setUpdatedAt(Instant.now());
+                    outboxEventRepository.save(event);
+                    log.warn("Outbox event {} compensation failed, avoiding infinite polling.", event.getId());
                     skippedOrFailed++;
                 }
             } catch (Exception e) {
+                event.setStatus(OutboxEventStatus.COMPENSATION_FAILED);
+                event.setUpdatedAt(Instant.now());
+                outboxEventRepository.save(event);
                 log.error("Unexpected error parsing payload or tracking compensation for outbox event {}",
                         event.getId(), e);
                 skippedOrFailed++;

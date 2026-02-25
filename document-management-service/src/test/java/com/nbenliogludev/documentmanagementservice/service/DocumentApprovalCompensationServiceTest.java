@@ -18,6 +18,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -48,9 +49,10 @@ class DocumentApprovalCompensationServiceTest {
         when(approvalRegistryGateway.existsByDocumentId(documentId)).thenReturn(false);
         when(documentRepository.saveAndFlush(any(Document.class))).thenReturn(document);
 
-        boolean result = compensationService.compensateApprovalRegistryFailure(documentId, outboxId);
+        DocumentApprovalCompensationService.CompensationResult result = compensationService
+                .compensateApprovalRegistryFailure(documentId, outboxId);
 
-        assertTrue(result);
+        assertEquals(DocumentApprovalCompensationService.CompensationResult.COMPENSATED, result);
         verify(documentRepository).saveAndFlush(document);
         verify(documentHistoryRepository).save(any(DocumentHistory.class));
     }
@@ -66,9 +68,10 @@ class DocumentApprovalCompensationServiceTest {
         when(documentRepository.findById(documentId)).thenReturn(Optional.of(document));
         when(approvalRegistryGateway.existsByDocumentId(documentId)).thenReturn(true);
 
-        boolean result = compensationService.compensateApprovalRegistryFailure(documentId, outboxId);
+        DocumentApprovalCompensationService.CompensationResult result = compensationService
+                .compensateApprovalRegistryFailure(documentId, outboxId);
 
-        assertTrue(result);
+        assertEquals(DocumentApprovalCompensationService.CompensationResult.SKIPPED, result);
         verify(documentRepository, never()).saveAndFlush(any());
         verify(documentHistoryRepository, never()).save(any());
     }
@@ -83,9 +86,10 @@ class DocumentApprovalCompensationServiceTest {
 
         when(documentRepository.findById(documentId)).thenReturn(Optional.of(document));
 
-        boolean result = compensationService.compensateApprovalRegistryFailure(documentId, outboxId);
+        DocumentApprovalCompensationService.CompensationResult result = compensationService
+                .compensateApprovalRegistryFailure(documentId, outboxId);
 
-        assertTrue(result); // Skips safely as true
+        assertEquals(DocumentApprovalCompensationService.CompensationResult.SKIPPED, result); // Skips safely as true
         verify(approvalRegistryGateway, never()).existsByDocumentId(any());
         verify(documentRepository, never()).saveAndFlush(any());
     }
@@ -103,8 +107,10 @@ class DocumentApprovalCompensationServiceTest {
         when(documentRepository.saveAndFlush(any(Document.class)))
                 .thenThrow(new ObjectOptimisticLockingFailureException(Document.class, documentId));
 
-        boolean result = compensationService.compensateApprovalRegistryFailure(documentId, outboxId);
+        DocumentApprovalCompensationService.CompensationResult result = compensationService
+                .compensateApprovalRegistryFailure(documentId, outboxId);
 
-        assertFalse(result); // Retains terminal failed state
+        assertEquals(DocumentApprovalCompensationService.CompensationResult.FAILED, result); // Retains terminal failed
+                                                                                             // state
     }
 }

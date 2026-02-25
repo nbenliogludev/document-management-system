@@ -23,28 +23,33 @@ public class DocumentApprovalCompensationService {
     private final DocumentHistoryRepository documentHistoryRepository;
     private final ApprovalRegistryGateway approvalRegistryGateway;
 
+    public enum CompensationResult {
+        COMPENSATED, SKIPPED, FAILED
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public boolean compensateApprovalRegistryFailure(UUID documentId, UUID outboxEventId) {
+    public CompensationResult compensateApprovalRegistryFailure(UUID documentId, UUID outboxEventId) {
         log.info("Starting compensation for outbox event: {}, document: {}", outboxEventId, documentId);
 
         Document document = documentRepository.findById(documentId).orElse(null);
         if (document == null) {
             log.warn("Document {} not found during compensation for event {}", documentId, outboxEventId);
-            return false;
+            return CompensationResult.FAILED;
         }
 
         if (document.getStatus() != DocumentStatus.APPROVED) {
             log.info("Document {} is not in APPROVED state (current state: {}). Automatic compensation skipped.",
                     documentId, document.getStatus());
-            return true; // Return true as it idempotently assumes compensated or intentionally out of
-                         // state
+            return CompensationResult.SKIPPED; // Return true as it idempotently assumes compensated or intentionally
+                                               // out of
+            // state
         }
 
         try {
             // Double check existing registry in gateway logic
             if (approvalRegistryGateway.existsByDocumentId(documentId)) {
                 log.info("Registration actually succeeded for document {}, compensation skipped.", documentId);
-                return true;
+                return CompensationResult.SKIPPED;
             }
 
             log.info("Executing compensation action: Document {} swapping from APPROVED -> SUBMITTED", documentId);
@@ -54,13 +59,13 @@ public class DocumentApprovalCompensationService {
             createHistoryRecord(saved.getId(), "APPROVAL_REVERTED_REGISTRY_FAILED",
                     DocumentStatus.APPROVED, DocumentStatus.SUBMITTED);
             log.info("Successfully compensated document {} back to SUBMITTED.", documentId);
-            return true;
+            return CompensationResult.COMPENSATED;
         } catch (org.springframework.orm.ObjectOptimisticLockingFailureException ex) {
             log.warn("Document {} modified concurrently preventing compensation", documentId);
-            return false; // Leave outbox event trapped for visibility and later triage
+            return CompensationResult.FAILED; // Leave outbox event trapped for visibility and later triage
         } catch (Exception ex) {
             log.error("Failed executing compensation action for document {}", documentId, ex);
-            return false;
+            return CompensationResult.FAILED;
         }
     }
 

@@ -1,6 +1,6 @@
 package com.nbenliogludev.documentmanagementservice.worker;
 
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nbenliogludev.documentmanagementservice.domain.dto.ApprovalRegistryCreatePayload;
 import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEvent;
 import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEventStatus;

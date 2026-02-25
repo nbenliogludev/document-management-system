@@ -6,5 +6,7 @@ public enum OutboxEventStatus {
     SENT,
     FAILED,
     FAILED_PERMANENT,
-    COMPENSATED
+    COMPENSATED,
+    COMPENSATION_SKIPPED,
+    COMPENSATION_FAILED
 }

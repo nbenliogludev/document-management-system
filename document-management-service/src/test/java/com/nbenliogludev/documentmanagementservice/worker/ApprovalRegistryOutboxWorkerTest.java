@@ -53,7 +53,7 @@ class ApprovalRegistryOutboxWorkerTest {
                 processor = new ApprovalRegistryOutboxProcessor(
                                 outboxEventRepository,
                                 approvalRegistryGateway,
-                                new tools.jackson.databind.ObjectMapper(),
+                                objectMapper,
                                 properties);
 
                 worker = new ApprovalRegistryOutboxWorker(outboxEventRepository, processor, properties);
@@ -178,12 +178,7 @@ class ApprovalRegistryOutboxWorkerTest {
                                 any(Instant.class),
                                 any(Pageable.class))).thenReturn(List.of(event));
 
-                when(objectMapper.readValue(event.getPayload(), ApprovalRegistryCreatePayload.class))
-                                .thenReturn(new ApprovalRegistryCreatePayload(UUID.randomUUID(), Instant.now()));
-
                 doThrow(new RuntimeException("Gateway error")).when(approvalRegistryGateway).createRecord(any(), any());
-
-                when(properties.getMaxRetries()).thenReturn(3); // Forces trigger
 
                 worker.processOutboxEvents();
 
