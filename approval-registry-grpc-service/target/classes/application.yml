@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+grpc:
+  server:
+    port: 9090
+
+spring:
+  application:
+    name: approval-registry-grpc-service
+  datasource:
+    url: jdbc:postgresql://localhost:5434/approval_registry_db
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml

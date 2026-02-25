@@ -13,6 +13,12 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
 
+grpc:
+  client:
+    approval-registry-grpc-service:
+      address: 'static://localhost:9090'
+      negotiation-type: plaintext
+
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -20,6 +26,15 @@ springdoc:
     path: /swagger-ui.html
 
 app:
+  outbox:
+    worker:
+      enabled: true
+      fixed-delay-ms: 3000
+      batch-size: 50
+      max-retries: 10
+      retry-backoff-ms: 5000
+  approval-registry:
+    mode: grpc
   workers:
     enabled: true
     batch-size: 20

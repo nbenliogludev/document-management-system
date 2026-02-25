@@ -5,13 +5,16 @@ import com.nbenliogludev.documentmanagementservice.domain.dto.CreateDocumentRequ
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentSearchRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentHistoryResponse;
-import com.nbenliogludev.documentmanagementservice.domain.entity.ApprovalRegistry;
+import com.nbenliogludev.documentmanagementservice.domain.dto.ApprovalRegistryCreatePayload;
+import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEvent;
 import com.nbenliogludev.documentmanagementservice.domain.entity.Document;
 import com.nbenliogludev.documentmanagementservice.domain.entity.DocumentHistory;
 import com.nbenliogludev.documentmanagementservice.domain.entity.DocumentStatus;
-import com.nbenliogludev.documentmanagementservice.domain.repository.ApprovalRegistryRepository;
+import com.nbenliogludev.documentmanagementservice.service.gateway.ApprovalRegistryGateway;
 import com.nbenliogludev.documentmanagementservice.domain.repository.DocumentHistoryRepository;
 import com.nbenliogludev.documentmanagementservice.domain.repository.DocumentRepository;
+import com.nbenliogludev.documentmanagementservice.domain.repository.OutboxEventRepository;
+import tools.jackson.databind.ObjectMapper;
 import com.nbenliogludev.documentmanagementservice.domain.specification.DocumentSpecification;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentAlreadyApprovedException;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentNotFoundException;
@@ -41,8 +44,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DocumentService {
     private final DocumentRepository documentRepository;
-    private final ApprovalRegistryRepository approvalRegistryRepository;
     private final DocumentHistoryRepository documentHistoryRepository;
+    private final ApprovalRegistryGateway approvalRegistryGateway;
+    private final OutboxEventRepository outboxEventRepository;
+    private final ObjectMapper objectMapper;
     private static final int MAX_RETRIES = 3;
 
     @Transactional
@@ -132,7 +137,7 @@ public class DocumentService {
         Document document = documentRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundException(id));
 
-        if (document.getStatus() == DocumentStatus.APPROVED || approvalRegistryRepository.existsByDocumentId(id)) {
+        if (document.getStatus() == DocumentStatus.APPROVED || approvalRegistryGateway.existsByDocumentId(id)) {
             throw new DocumentAlreadyApprovedException(id);
         }
 
@@ -150,15 +155,25 @@ public class DocumentService {
             throw new DocumentAlreadyApprovedException(id);
         }
 
+        Instant approvedAt = Instant.now();
+        ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
+                .documentId(saved.getId())
+                .approvedAt(approvedAt)
+                .build();
+
         try {
-            ApprovalRegistry registry = new ApprovalRegistry();
-            registry.setDocumentId(saved.getId());
-            registry.setApprovedAt(Instant.now());
-            // CreatedAt is set by PrePersist
-            approvalRegistryRepository.saveAndFlush(registry);
-        } catch (DataIntegrityViolationException ex) {
-            log.warn("Document {} already approved concurrently", id);
-            throw new DocumentAlreadyApprovedException(id);
+            OutboxEvent outboxEvent = OutboxEvent.builder()
+                    .aggregateType("DOCUMENT")
+                    .aggregateId(saved.getId())
+                    .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
+                    .payload(objectMapper.writeValueAsString(payload))
+                    .build();
+            outboxEventRepository.save(outboxEvent);
+            log.info("outbox event created for document. eventId: {}, document: {}", outboxEvent.getId(),
+                    saved.getId());
+        } catch (Exception e) {
+            log.error("Failed to serialize ApprovalRecord payload for document: {}", saved.getId(), e);
+            throw new RuntimeException("Failed to track Outbox metrics", e);
         }
 
         createHistoryRecord(saved.getId(), "APPROVED", DocumentStatus.SUBMITTED, DocumentStatus.APPROVED);

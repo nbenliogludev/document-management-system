@@ -18,5 +18,38 @@ services:
       timeout: 3s
       retries: 10
 
+  approval-registry-postgres:
+    image: postgres:16
+    container_name: approval-registry-postgres
+    environment:
+      POSTGRES_DB: approval_registry_db
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata_approval:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U app -d approval_registry_db" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  approval-registry-grpc-service:
+    build:
+      context: ./approval-registry-grpc-service
+      dockerfile: Dockerfile
+    container_name: approval-registry-grpc-service
+    ports:
+      - "9090:9090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://approval-registry-postgres:5432/approval_registry_db
+      - SPRING_DATASOURCE_USERNAME=app
+      - SPRING_DATASOURCE_PASSWORD=app
+    depends_on:
+      approval-registry-postgres:
+        condition: service_healthy
+
 volumes:
   pgdata:
+  pgdata_approval:

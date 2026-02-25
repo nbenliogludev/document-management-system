@@ -2,11 +2,13 @@ package com.nbenliogludev.documentmanagementservice.service;
 
 import com.nbenliogludev.documentmanagementservice.domain.dto.ConcurrencyApproveCheckResponse;
 import com.nbenliogludev.documentmanagementservice.domain.entity.Document;
-import com.nbenliogludev.documentmanagementservice.domain.repository.ApprovalRegistryRepository;
+import com.nbenliogludev.documentmanagementservice.domain.entity.Document;
 import com.nbenliogludev.documentmanagementservice.domain.repository.DocumentRepository;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentAlreadyApprovedException;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentNotFoundException;
 import com.nbenliogludev.documentmanagementservice.exception.InvalidDocumentStatusException;
+import com.nbenliogludev.documentmanagementservice.service.gateway.ApprovalRegistryGateway;
+import com.nbenliogludev.documentmanagementservice.worker.ApprovalRegistryOutboxWorker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,7 +29,8 @@ public class DocumentConcurrencyCheckService {
 
     private final DocumentService documentService;
     private final DocumentRepository documentRepository;
-    private final ApprovalRegistryRepository approvalRegistryRepository;
+    private final ApprovalRegistryGateway approvalRegistryGateway;
+    private final ApprovalRegistryOutboxWorker outboxWorker;
 
     public ConcurrencyApproveCheckResponse runApproveConcurrencyCheck(UUID documentId, int threads, int attempts) {
         log.info("Starting concurrency check for documentId={}, threads={}, attempts={}", documentId, threads,
@@ -78,10 +81,14 @@ public class DocumentConcurrencyCheckService {
             executorService.shutdown();
         }
 
+        // Force synchronous outbox processing so registry assertions can be performed
+        // immediately!
+        outboxWorker.processOutboxEvents();
+
         Document finalDoc = documentRepository.findById(documentId)
                 .orElseThrow(() -> new DocumentNotFoundException(documentId));
-        boolean registryExists = approvalRegistryRepository.existsByDocumentId(documentId);
-        long registryCount = approvalRegistryRepository.countByDocumentId(documentId);
+        boolean registryExists = approvalRegistryGateway.existsByDocumentId(documentId);
+        long registryCount = approvalRegistryGateway.countByDocumentId(documentId);
 
         ConcurrencyApproveCheckResponse response = ConcurrencyApproveCheckResponse.builder()
                 .documentId(documentId)
