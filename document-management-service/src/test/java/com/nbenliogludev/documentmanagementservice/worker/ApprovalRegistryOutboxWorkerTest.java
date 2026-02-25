@@ -28,139 +28,163 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class ApprovalRegistryOutboxWorkerTest {
 
-    @Mock
-    private OutboxEventRepository outboxEventRepository;
+        @Mock
+        private OutboxEventRepository outboxEventRepository;
 
-    @Mock
-    private ApprovalRegistryGateway approvalRegistryGateway;
+        @Mock
+        private ApprovalRegistryGateway approvalRegistryGateway;
 
-    private ApprovalRegistryOutboxProcessor processor;
-    private ApprovalRegistryOutboxWorker worker;
-    private ObjectMapper objectMapper;
-    private OutboxProperties properties;
+        private ApprovalRegistryOutboxProcessor processor;
+        private ApprovalRegistryOutboxWorker worker;
+        private ObjectMapper objectMapper;
+        private OutboxProperties properties;
 
-    @BeforeEach
-    void setUp() {
-        objectMapper = new ObjectMapper();
-        objectMapper.findAndRegisterModules();
+        @BeforeEach
+        void setUp() {
+                objectMapper = new ObjectMapper();
+                objectMapper.findAndRegisterModules();
 
-        properties = new OutboxProperties();
-        properties.setEnabled(true);
-        properties.setBatchSize(10);
-        properties.setMaxRetries(3);
-        properties.setRetryBackoffMs(1000L);
+                properties = new OutboxProperties();
+                properties.setEnabled(true);
+                properties.setBatchSize(10);
+                properties.setMaxRetries(3);
+                properties.setRetryBackoffMs(1000L);
 
-        processor = new ApprovalRegistryOutboxProcessor(
-                outboxEventRepository,
-                approvalRegistryGateway,
-                new tools.jackson.databind.ObjectMapper(),
-                properties);
+                processor = new ApprovalRegistryOutboxProcessor(
+                                outboxEventRepository,
+                                approvalRegistryGateway,
+                                objectMapper,
+                                properties);
 
-        worker = new ApprovalRegistryOutboxWorker(outboxEventRepository, processor, properties);
-    }
+                worker = new ApprovalRegistryOutboxWorker(outboxEventRepository, processor, properties);
+        }
 
-    @Test
-    void processOutboxEvents_ShouldProcessNewEventsSuccessfully() throws Exception {
-        UUID docId = UUID.randomUUID();
-        ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
-                .documentId(docId)
-                .approvedAt(Instant.now())
-                .build();
+        @Test
+        void processOutboxEvents_ShouldProcessNewEventsSuccessfully() throws Exception {
+                UUID docId = UUID.randomUUID();
+                ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
+                                .documentId(docId)
+                                .approvedAt(Instant.now())
+                                .build();
 
-        OutboxEvent event = OutboxEvent.builder()
-                .aggregateType("DOCUMENT")
-                .aggregateId(docId)
-                .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
-                .payload(objectMapper.writeValueAsString(payload))
-                .build();
-        event.setId(UUID.randomUUID());
-        event.setStatus(OutboxEventStatus.NEW);
-        event.setRetryCount(0);
+                OutboxEvent event = OutboxEvent.builder()
+                                .aggregateType("DOCUMENT")
+                                .aggregateId(docId)
+                                .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
+                                .payload(objectMapper.writeValueAsString(payload))
+                                .build();
+                event.setId(UUID.randomUUID());
+                event.setStatus(OutboxEventStatus.NEW);
+                event.setRetryCount(0);
 
-        when(outboxEventRepository.findPendingEvents(anyList(), any(Instant.class), any(Pageable.class)))
-                .thenReturn(List.of(event));
+                when(outboxEventRepository.findPendingEvents(anyList(), any(Instant.class), any(Pageable.class)))
+                                .thenReturn(List.of(event));
 
-        worker.processOutboxEvents();
+                worker.processOutboxEvents();
 
-        verify(approvalRegistryGateway).createRecord(eq(docId), any(Instant.class));
+                verify(approvalRegistryGateway).createRecord(eq(docId), any(Instant.class));
 
-        ArgumentCaptor<OutboxEvent> eventCaptor = ArgumentCaptor.forClass(OutboxEvent.class);
-        verify(outboxEventRepository, atLeastOnce()).save(eventCaptor.capture());
+                ArgumentCaptor<OutboxEvent> eventCaptor = ArgumentCaptor.forClass(OutboxEvent.class);
+                verify(outboxEventRepository, atLeastOnce()).save(eventCaptor.capture());
 
-        OutboxEvent savedEvent = eventCaptor.getValue();
-        assertEquals(OutboxEventStatus.SENT, savedEvent.getStatus());
-        assertNull(savedEvent.getLastError());
-    }
+                OutboxEvent savedEvent = eventCaptor.getValue();
+                assertEquals(OutboxEventStatus.SENT, savedEvent.getStatus());
+                assertNull(savedEvent.getLastError());
+        }
 
-    @Test
-    void processOutboxEvents_ShouldHandleAlreadyExistsIdempotently() throws Exception {
-        UUID docId = UUID.randomUUID();
-        ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
-                .documentId(docId)
-                .approvedAt(Instant.now())
-                .build();
+        @Test
+        void processOutboxEvents_ShouldHandleAlreadyExistsIdempotently() throws Exception {
+                UUID docId = UUID.randomUUID();
+                ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
+                                .documentId(docId)
+                                .approvedAt(Instant.now())
+                                .build();
 
-        OutboxEvent event = OutboxEvent.builder()
-                .aggregateType("DOCUMENT")
-                .aggregateId(docId)
-                .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
-                .payload(objectMapper.writeValueAsString(payload))
-                .build();
-        event.setId(UUID.randomUUID());
-        event.setStatus(OutboxEventStatus.NEW);
-        event.setRetryCount(0);
+                OutboxEvent event = OutboxEvent.builder()
+                                .aggregateType("DOCUMENT")
+                                .aggregateId(docId)
+                                .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
+                                .payload(objectMapper.writeValueAsString(payload))
+                                .build();
+                event.setId(UUID.randomUUID());
+                event.setStatus(OutboxEventStatus.NEW);
+                event.setRetryCount(0);
 
-        when(outboxEventRepository.findPendingEvents(anyList(), any(Instant.class), any(Pageable.class)))
-                .thenReturn(List.of(event));
+                when(outboxEventRepository.findPendingEvents(anyList(), any(Instant.class), any(Pageable.class)))
+                                .thenReturn(List.of(event));
 
-        doThrow(new DocumentAlreadyApprovedException(docId))
-                .when(approvalRegistryGateway).createRecord(any(), any());
+                doThrow(new DocumentAlreadyApprovedException(docId))
+                                .when(approvalRegistryGateway).createRecord(any(), any());
 
-        worker.processOutboxEvents();
+                worker.processOutboxEvents();
 
-        ArgumentCaptor<OutboxEvent> eventCaptor = ArgumentCaptor.forClass(OutboxEvent.class);
-        verify(outboxEventRepository, atLeastOnce()).save(eventCaptor.capture());
+                ArgumentCaptor<OutboxEvent> eventCaptor = ArgumentCaptor.forClass(OutboxEvent.class);
+                verify(outboxEventRepository, atLeastOnce()).save(eventCaptor.capture());
 
-        OutboxEvent savedEvent = eventCaptor.getValue();
-        // Even if exception occurs, Status should be SENT because it means the record
-        // is already there
-        assertEquals(OutboxEventStatus.SENT, savedEvent.getStatus());
-        assertTrue(savedEvent.getLastError().contains("ALREADY_EXISTS"));
-    }
+                OutboxEvent savedEvent = eventCaptor.getValue();
+                // Even if exception occurs, Status should be SENT because it means the record
+                // is already there
+                assertEquals(OutboxEventStatus.SENT, savedEvent.getStatus());
+                assertTrue(savedEvent.getLastError().contains("ALREADY_EXISTS"));
+        }
 
-    @Test
-    void processOutboxEvents_ShouldHandleTransientErrorsAndRetry() throws Exception {
-        UUID docId = UUID.randomUUID();
-        ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
-                .documentId(docId)
-                .approvedAt(Instant.now())
-                .build();
+        @Test
+        void processOutboxEvents_ShouldHandleTransientErrorsAndRetry() throws Exception {
+                UUID docId = UUID.randomUUID();
+                ApprovalRegistryCreatePayload payload = ApprovalRegistryCreatePayload.builder()
+                                .documentId(docId)
+                                .approvedAt(Instant.now())
+                                .build();
 
-        OutboxEvent event = OutboxEvent.builder()
-                .aggregateType("DOCUMENT")
-                .aggregateId(docId)
-                .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
-                .payload(objectMapper.writeValueAsString(payload))
-                .build();
-        event.setId(UUID.randomUUID());
-        event.setStatus(OutboxEventStatus.NEW);
-        event.setRetryCount(0);
+                OutboxEvent event = OutboxEvent.builder()
+                                .aggregateType("DOCUMENT")
+                                .aggregateId(docId)
+                                .eventType("APPROVAL_RECORD_CREATE_REQUESTED")
+                                .payload(objectMapper.writeValueAsString(payload))
+                                .build();
+                event.setId(UUID.randomUUID());
+                event.setStatus(OutboxEventStatus.NEW);
+                event.setRetryCount(0);
 
-        when(outboxEventRepository.findPendingEvents(anyList(), any(Instant.class), any(Pageable.class)))
-                .thenReturn(List.of(event));
+                when(outboxEventRepository.findPendingEvents(anyList(), any(Instant.class), any(Pageable.class)))
+                                .thenReturn(List.of(event));
 
-        doThrow(new RuntimeException("Connection timeout"))
-                .when(approvalRegistryGateway).createRecord(any(), any());
+                doThrow(new RuntimeException("Connection timeout"))
+                                .when(approvalRegistryGateway).createRecord(any(), any());
 
-        worker.processOutboxEvents();
+                worker.processOutboxEvents();
 
-        ArgumentCaptor<OutboxEvent> eventCaptor = ArgumentCaptor.forClass(OutboxEvent.class);
-        verify(outboxEventRepository, atLeastOnce()).save(eventCaptor.capture());
+                ArgumentCaptor<OutboxEvent> eventCaptor = ArgumentCaptor.forClass(OutboxEvent.class);
+                verify(outboxEventRepository, atLeastOnce()).save(eventCaptor.capture());
 
-        OutboxEvent savedEvent = eventCaptor.getValue();
-        assertEquals(OutboxEventStatus.FAILED, savedEvent.getStatus());
-        assertEquals(1, savedEvent.getRetryCount());
-        assertNotNull(savedEvent.getNextRetryAt());
-        assertTrue(savedEvent.getLastError().contains("Connection timeout"));
-    }
+                OutboxEvent savedEvent = eventCaptor.getValue();
+                assertEquals(OutboxEventStatus.FAILED, savedEvent.getStatus());
+                assertEquals(1, savedEvent.getRetryCount());
+                assertNotNull(savedEvent.getNextRetryAt());
+                assertTrue(savedEvent.getLastError().contains("Connection timeout"));
+        }
+
+        @Test
+        void processOutboxEvents_ShouldSetPermanentFailed_WhenRetryCountExceedsMax() throws Exception {
+                OutboxEvent event = new OutboxEvent();
+                event.setId(UUID.randomUUID());
+                event.setStatus(OutboxEventStatus.FAILED);
+                event.setRetryCount(3); // Setting up exhaustion
+                event.setPayload("{\"documentId\":\"" + UUID.randomUUID()
+                                + "\",\"approvedAt\":\"2026-02-24T00:00:00Z\"}");
+
+                when(outboxEventRepository.findPendingEvents(
+                                anyList(),
+                                any(Instant.class),
+                                any(Pageable.class))).thenReturn(List.of(event));
+
+                doThrow(new RuntimeException("Gateway error")).when(approvalRegistryGateway).createRecord(any(), any());
+
+                worker.processOutboxEvents();
+
+                verify(outboxEventRepository)
+                                .save(argThat(saved -> saved.getStatus() == OutboxEventStatus.FAILED_PERMANENT &&
+                                                saved.getRetryCount() == 4 &&
+                                                saved.getNextRetryAt() == null));
+        }
 }

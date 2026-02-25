@@ -45,6 +45,20 @@ docker compose up -d
 ```
 *This will spin up `documents-postgres` (5433), `approval-registry-postgres` (5434), and the `approval-registry-grpc-service` container (9090).*
 
+### Automatic Saga Compensation (Outbox)
+
+If the `ApprovalRegistry` gRPC service permanently fails to store a new `APPROVED` document state (i.e. reaches its max-retry limit), the system enacts a localized Saga compensating action instead of a silent distributed failure.
+
+A scheduled worker (`ApprovalRegistryCompensationWorker`) parses events mapped uniquely as `FAILED_PERMANENT`. The worker then re-inspects the document, and provided the document hasn't been reverted or modified externally, swaps its state from `APPROVED` safely back to `SUBMITTED`, preserving history alongside robust Optimistic Locks.
+
+**To Simulate a Permanent Failure**
+1. Stop the external gRPC service container:
+   `docker-compose stop approval-registry-grpc-service`
+2. Create and Submit a document normally via the REST API
+3. Call the Approve Endpoint. The document will change to `APPROVED` globally.
+4. Watch the `document-management-service` logs. After several retry warnings mapping `FAILED`, a terminal `FAILED_PERMANENT` triggers.
+5. Notice the automatic compensator swap the document back to `SUBMITTED`, printing an `APPROVAL_REVERTED_REGISTRY_FAILED` trace under the Document History endpoints.
+
 ### 2. Start the Main API Service
 Navigate to the backend directory and launch the application via the maven wrapper:
 ```bash

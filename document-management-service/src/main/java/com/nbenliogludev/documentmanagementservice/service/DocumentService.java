@@ -10,11 +10,11 @@ import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEvent;
 import com.nbenliogludev.documentmanagementservice.domain.entity.Document;
 import com.nbenliogludev.documentmanagementservice.domain.entity.DocumentHistory;
 import com.nbenliogludev.documentmanagementservice.domain.entity.DocumentStatus;
-import com.nbenliogludev.documentmanagementservice.service.gateway.ApprovalRegistryGateway;
+
 import com.nbenliogludev.documentmanagementservice.domain.repository.DocumentHistoryRepository;
 import com.nbenliogludev.documentmanagementservice.domain.repository.DocumentRepository;
 import com.nbenliogludev.documentmanagementservice.domain.repository.OutboxEventRepository;
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nbenliogludev.documentmanagementservice.domain.specification.DocumentSpecification;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentAlreadyApprovedException;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentNotFoundException;
@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
 public class DocumentService {
     private final DocumentRepository documentRepository;
     private final DocumentHistoryRepository documentHistoryRepository;
-    private final ApprovalRegistryGateway approvalRegistryGateway;
+
     private final OutboxEventRepository outboxEventRepository;
     private final ObjectMapper objectMapper;
     private static final int MAX_RETRIES = 3;
@@ -137,7 +137,7 @@ public class DocumentService {
         Document document = documentRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundException(id));
 
-        if (document.getStatus() == DocumentStatus.APPROVED || approvalRegistryGateway.existsByDocumentId(id)) {
+        if (document.getStatus() == DocumentStatus.APPROVED) {
             throw new DocumentAlreadyApprovedException(id);
         }
 

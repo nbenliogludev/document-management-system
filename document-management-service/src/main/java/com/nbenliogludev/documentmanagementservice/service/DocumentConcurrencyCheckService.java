@@ -2,13 +2,13 @@ package com.nbenliogludev.documentmanagementservice.service;
 
 import com.nbenliogludev.documentmanagementservice.domain.dto.ConcurrencyApproveCheckResponse;
 import com.nbenliogludev.documentmanagementservice.domain.entity.Document;
-import com.nbenliogludev.documentmanagementservice.domain.entity.Document;
 import com.nbenliogludev.documentmanagementservice.domain.repository.DocumentRepository;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentAlreadyApprovedException;
 import com.nbenliogludev.documentmanagementservice.exception.DocumentNotFoundException;
 import com.nbenliogludev.documentmanagementservice.exception.InvalidDocumentStatusException;
 import com.nbenliogludev.documentmanagementservice.service.gateway.ApprovalRegistryGateway;
 import com.nbenliogludev.documentmanagementservice.worker.ApprovalRegistryOutboxWorker;
+import org.springframework.beans.factory.ObjectProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,7 +30,7 @@ public class DocumentConcurrencyCheckService {
     private final DocumentService documentService;
     private final DocumentRepository documentRepository;
     private final ApprovalRegistryGateway approvalRegistryGateway;
-    private final ApprovalRegistryOutboxWorker outboxWorker;
+    private final ObjectProvider<ApprovalRegistryOutboxWorker> outboxWorkerProvider;
 
     public ConcurrencyApproveCheckResponse runApproveConcurrencyCheck(UUID documentId, int threads, int attempts) {
         log.info("Starting concurrency check for documentId={}, threads={}, attempts={}", documentId, threads,
@@ -83,7 +83,7 @@ public class DocumentConcurrencyCheckService {
 
         // Force synchronous outbox processing so registry assertions can be performed
         // immediately!
-        outboxWorker.processOutboxEvents();
+        outboxWorkerProvider.ifAvailable(worker -> worker.processOutboxEvents());
 
         Document finalDoc = documentRepository.findById(documentId)
                 .orElseThrow(() -> new DocumentNotFoundException(documentId));

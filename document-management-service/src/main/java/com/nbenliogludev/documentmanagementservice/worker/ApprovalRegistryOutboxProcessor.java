@@ -1,6 +1,6 @@
 package com.nbenliogludev.documentmanagementservice.worker;
 
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nbenliogludev.documentmanagementservice.domain.dto.ApprovalRegistryCreatePayload;
 import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEvent;
 import com.nbenliogludev.documentmanagementservice.domain.entity.OutboxEventStatus;
@@ -59,7 +59,7 @@ public class ApprovalRegistryOutboxProcessor {
         event.setUpdatedAt(Instant.now());
 
         if (event.getRetryCount() >= properties.getMaxRetries()) {
-            event.setStatus(OutboxEventStatus.FAILED);
+            event.setStatus(OutboxEventStatus.FAILED_PERMANENT);
             event.setNextRetryAt(null);
             log.error("Outbox event {} permanently failed after {} retries", event.getId(), event.getRetryCount());
         } else {
