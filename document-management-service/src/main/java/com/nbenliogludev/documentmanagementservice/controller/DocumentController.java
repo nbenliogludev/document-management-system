@@ -8,9 +8,12 @@ import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentSearchRequ
 import com.nbenliogludev.documentmanagementservice.domain.dto.DocumentHistoryResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchResponse;
+import com.nbenliogludev.documentmanagementservice.domain.dto.BatchJobResponse;
+import com.nbenliogludev.documentmanagementservice.domain.dto.BatchJobItemResponse;
 import com.nbenliogludev.documentmanagementservice.service.DocumentConcurrencyCheckService;
 import com.nbenliogludev.documentmanagementservice.service.DocumentService;
 import com.nbenliogludev.documentmanagementservice.service.DocumentBatchService;
+import com.nbenliogludev.documentmanagementservice.service.BatchJobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,6 +39,7 @@ public class DocumentController {
         private final DocumentService documentService;
         private final DocumentBatchService documentBatchService;
         private final DocumentConcurrencyCheckService documentConcurrencyCheckService;
+        private final BatchJobService batchJobService;
 
         @Operation(summary = "Create a new document", description = "Generates a unique document number automatically and sets the default status to DRAFT.")
         @ApiResponses(value = {
@@ -133,11 +137,44 @@ public class DocumentController {
                         @ApiResponse(responseCode = "400", description = "Invalid request parameters")
         })
         @PostMapping("/{id}/approve/concurrency-check")
-        public ConcurrencyApproveCheckResponse checkApproveConcurrency(
+        public ConcurrencyApproveCheckResponse approveDocumentWithConcurrencyCheck(
                         @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id,
-                        @Valid @RequestBody @Parameter(description = "Concurrency configuration (threads and attempts)") ConcurrencyApproveCheckRequest request) {
+                        @Valid @RequestBody ConcurrencyApproveCheckRequest request) {
                 return documentConcurrencyCheckService.runApproveConcurrencyCheck(id, request.getThreads(),
                                 request.getAttempts());
+        }
+
+        @Operation(summary = "Submit an async batch approve job", description = "Creates a background job to process large approvals.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "202", description = "Job created and accepted for processing"),
+                        @ApiResponse(responseCode = "400", description = "Invalid batch request")
+        })
+        @PostMapping("/batch/approve-jobs")
+        @ResponseStatus(HttpStatus.ACCEPTED)
+        public BatchJobResponse createBatchApproveJob(@Valid @RequestBody BatchRequest request) {
+                return batchJobService.createApproveJob(request);
+        }
+
+        @Operation(summary = "Get async batch job status", description = "Returns the summary status and progress counters of the batch job.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Job found"),
+                        @ApiResponse(responseCode = "404", description = "Job not found")
+        })
+        @GetMapping("/batch-jobs/{jobId}")
+        public BatchJobResponse getBatchJob(@PathVariable UUID jobId) {
+                return batchJobService.getJob(jobId);
+        }
+
+        @Operation(summary = "Get async batch job items", description = "Returns paginated list of items associated with the batch job.")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Items retrieved successfully"),
+                        @ApiResponse(responseCode = "404", description = "Job not found")
+        })
+        @GetMapping("/batch-jobs/{jobId}/items")
+        public Page<BatchJobItemResponse> getBatchJobItems(
+                        @PathVariable UUID jobId,
+                        @ParameterObject Pageable pageable) {
+                return batchJobService.getJobItems(jobId, pageable);
         }
 
         @Operation(summary = "Batch get documents", description = "Retrieves a batch of documents by their identifiers, applying optional pagination and restricted sorting constraints.")

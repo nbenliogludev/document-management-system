@@ -35,8 +35,12 @@ app:
       retry-backoff-ms: 5000
       compensation:
         enabled: true
-        fixed-delay-ms: 5000
+        fixed-delay-ms: 10000
         batch-size: 50
+  batch-jobs:
+    enabled: true
+    fixed-delay-ms: 2000
+    chunk-size: 100
   approval-registry:
     mode: grpc
   workers:

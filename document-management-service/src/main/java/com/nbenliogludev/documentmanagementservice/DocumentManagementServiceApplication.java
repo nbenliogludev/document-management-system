@@ -5,10 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import com.nbenliogludev.documentmanagementservice.config.BatchJobProperties;
 
 @SpringBootApplication
 @EnableScheduling
-@EnableConfigurationProperties(DocumentWorkersProperties.class)
+@EnableConfigurationProperties({ DocumentWorkersProperties.class, BatchJobProperties.class })
 public class DocumentManagementServiceApplication {
 
     public static void main(String[] args) {
