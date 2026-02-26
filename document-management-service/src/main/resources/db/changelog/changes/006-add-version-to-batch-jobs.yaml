@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-version-to-batch-jobs
+      author: nbenlioglu
+      changes:
+        - addColumn:
+            tableName: batch_jobs
+            columns:
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
