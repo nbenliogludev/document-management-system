@@ -11,3 +11,7 @@ databaseChangeLog:
       file: db/changelog/changes/005-create-batch-jobs.yaml
   - include:
       file: db/changelog/changes/006-add-version-to-batch-jobs.yaml
+  - include:
+      file: db/changelog/changes/007-optimize-document-search-indexes.yaml
+  - include:
+      file: db/changelog/changes/008-optimize-outbox-search-indexes.yaml

@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -19,7 +20,12 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "documents")
+@Table(name = "documents", indexes = {
+        @Index(name = "idx_documents_status_created_at", columnList = "status, created_at DESC"),
+        @Index(name = "idx_documents_author_status_created_at", columnList = "author, status, created_at DESC"),
+        @Index(name = "idx_documents_status", columnList = "status"),
+        @Index(name = "idx_documents_created_at", columnList = "created_at DESC")
+})
 @Getter
 @Setter
 @NoArgsConstructor

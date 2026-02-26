@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-optimize-document-search-indexes
+      author: antigravity
+      changes:
+        - sql:
+            sql: |
+              CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+              CREATE INDEX IF NOT EXISTS idx_documents_status_created_at 
+              ON documents(status, created_at DESC);
+
+              CREATE INDEX IF NOT EXISTS idx_documents_author_status_created_at 
+              ON documents(author, status, created_at DESC);
+
+              CREATE INDEX IF NOT EXISTS idx_documents_status 
+              ON documents(status);
+
+              CREATE INDEX IF NOT EXISTS idx_documents_created_at 
+              ON documents(created_at DESC);
+
+              CREATE INDEX IF NOT EXISTS idx_documents_title_trgm 
+              ON documents USING GIN(title gin_trgm_ops);
