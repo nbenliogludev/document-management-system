@@ -134,10 +134,105 @@ Key settings for `document-management-service` (`application.yml`):
 3. Open `app.log` or the Spring Boot console: you will see how the `submit-worker` picks up `DRAFT`s in batches and transitions them to `SUBMITTED`. Then the `approve-worker` will pick them up and transition them to `APPROVED`.
 4. Open the Swagger UI and request `GET /api/v1/documents`. You will see the created documents with the `APPROVED` status.
 
-**API Test Examples (Swagger / Curl):**
-- **Concurrency Check Test**: Try to send a `PUT /api/v1/documents/{id}` with `version: 0` when the actual document version in the DB is already `1`. You will receive an HTTP 409 Conflict.
-- **Batch Submit/Approve Endpoints**: Pass a list of UUIDs to `/api/v1/documents/submit/batch`. If the 1st ID is correct, and the 2nd is erroneous (not found or already `SUBMITTED`), the service will return 200 OK (Partial Support) with a summary `total=2, success=1, error=1`.
-- **Batch Get Paginated Endpoint**: POST `/api/v1/documents/batch/get?page=0&size=10&sortBy=title&sortDir=asc`. Returns documents by the provided pool of UUIDs, supporting pagination and safe sorting only by `title` and `createdAt` (otherwise returns `400 Bad Request`).
+## API Test Examples (Swagger / Curl)
+
+### 1. Concurrency Check Test
+Use the dedicated concurrency endpoint:
+
+POST /api/v1/documents/{id}/approve/concurrency-check
+
+Example body:
+{
+  "threads": 5,
+  "attempts": 3
+}
+
+This simulates parallel approval attempts.
+If optimistic locking works correctly — only one approval succeeds and the rest are safely rejected.
+
+---
+
+### 2. Batch Submit Endpoint
+POST /api/v1/documents/submit/batch
+
+Pass a list of UUIDs:
+
+{
+  "ids": [
+    "valid-id-1",
+    "invalid-or-already-submitted-id"
+  ]
+}
+
+Expected result:
+
+HTTP 200 OK
+
+{
+  "total": 2,
+  "success": 1,
+  "error": 1
+}
+
+Batch processing continues even if some documents fail.
+
+---
+
+### 3. Batch Approve with Partial Success
+POST /api/v1/documents/approve/batch
+
+Example:
+
+{
+  "ids": [
+    "submitted-id",
+    "not-found-id",
+    "already-approved-id"
+  ]
+}
+
+System returns partial result without stopping the transaction flow.
+
+---
+
+### 4. Approval Rollback (Registry Failure Simulation)
+
+To simulate rollback:
+
+1. Stop gRPC registry:
+
+docker-compose stop approval-registry-grpc-service
+
+2. Approve a document:
+
+POST /api/v1/documents/{id}/approve
+
+3. Watch logs.
+
+If registry write fails permanently:
+
+APPROVED → automatically reverted to SUBMITTED
+
+via ApprovalRegistryCompensationWorker
+
+---
+
+### 5. Batch Get with Pagination
+
+POST /api/v1/documents/batch/get?page=0&size=10&sortBy=createdAt&sortDir=desc
+
+Body:
+
+{
+  "ids": ["uuid1", "uuid2"]
+}
+
+Sorting allowed only by:
+
+- title
+- createdAt
+
+Invalid fields → HTTP 400
 
 ## Logging
 
