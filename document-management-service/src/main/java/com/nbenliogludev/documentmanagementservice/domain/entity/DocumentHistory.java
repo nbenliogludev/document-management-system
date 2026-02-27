@@ -30,16 +30,20 @@ public class DocumentHistory {
     private DocumentStatus fromStatus;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "to_status")
+    @Column(name = "to_status", nullable = false)
     private DocumentStatus toStatus;
 
+    @Column(name = "actor", nullable = false)
+    private String actor;
+
+    @Column(name = "comment", columnDefinition = "TEXT")
+    private String comment;
+
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant createdAt;
+    private Instant createdAt = Instant.now();
 
     @PrePersist
     protected void onCreate() {
-        if (createdAt == null) {
-            createdAt = Instant.now();
-        }
+        // createdAt is already initialized, no need for this check
     }
 }

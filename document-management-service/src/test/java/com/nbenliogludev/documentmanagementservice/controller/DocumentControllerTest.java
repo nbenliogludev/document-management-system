@@ -96,7 +96,9 @@ class DocumentControllerTest {
                 String idStr = objectMapper.readTree(responseStr).get("id").asText();
                 UUID id = UUID.fromString(idStr);
 
-                mockMvc.perform(post("/api/v1/documents/{id}/submit", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/submit", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Test User\"}"))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.status").value(DocumentStatus.SUBMITTED.name()));
         }
@@ -115,10 +117,14 @@ class DocumentControllerTest {
                 String idStr = objectMapper.readTree(responseStr).get("id").asText();
                 UUID id = UUID.fromString(idStr);
 
-                mockMvc.perform(post("/api/v1/documents/{id}/submit", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/submit", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Test User\"}"))
                                 .andExpect(status().isOk());
 
-                mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/approve", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Admin User\"}"))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.status").value(DocumentStatus.APPROVED.name()));
         }
@@ -137,7 +143,9 @@ class DocumentControllerTest {
                 String idStr = objectMapper.readTree(responseStr).get("id").asText();
                 UUID id = UUID.fromString(idStr);
 
-                mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/approve", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Admin User\"}"))
                                 .andExpect(status().isConflict())
                                 .andExpect(jsonPath("$.error").value("Conflict"))
                                 .andExpect(jsonPath("$.message").value(
@@ -159,13 +167,19 @@ class DocumentControllerTest {
                 String idStr = objectMapper.readTree(responseStr).get("id").asText();
                 UUID id = UUID.fromString(idStr);
 
-                mockMvc.perform(post("/api/v1/documents/{id}/submit", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/submit", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Test User\"}"))
                                 .andExpect(status().isOk());
 
-                mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/approve", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Admin User\"}"))
                                 .andExpect(status().isOk());
 
-                mockMvc.perform(post("/api/v1/documents/{id}/approve", id))
+                mockMvc.perform(post("/api/v1/documents/{id}/approve", id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Admin User\"}"))
                                 .andExpect(status().isConflict())
                                 .andExpect(jsonPath("$.error").value("Conflict"))
                                 .andExpect(jsonPath("$.message").value("Document " + id + " is already approved."));
@@ -188,7 +202,7 @@ class DocumentControllerTest {
 
                 UUID unknownId = UUID.randomUUID();
 
-                String batchReq = "{\"ids\": [\"" + idStr + "\", \"" + unknownId + "\"]}";
+                String batchReq = "{\"ids\": [\"" + idStr + "\", \"" + unknownId + "\"], \"initiator\": \"BatchUser\"}";
 
                 mockMvc.perform(post("/api/v1/documents/submit/batch")
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -225,7 +239,9 @@ class DocumentControllerTest {
                 String idStr2 = objectMapper.readTree(responseStr2).get("id").asText();
 
                 // Submit Doc 1
-                mockMvc.perform(post("/api/v1/documents/{id}/submit", idStr1))
+                mockMvc.perform(post("/api/v1/documents/{id}/submit", idStr1)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Test User\"}"))
                                 .andExpect(status().isOk());
 
                 TestTransaction.flagForCommit();
@@ -234,7 +250,7 @@ class DocumentControllerTest {
 
                 // Batch approve both. Doc 1 is SUBMITTED (will succeed), Doc 2 is DRAFT (will
                 // fail)
-                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"]}";
+                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"], \"initiator\": \"BatchAdmin\"}";
 
                 mockMvc.perform(post("/api/v1/documents/approve/batch")
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -249,7 +265,7 @@ class DocumentControllerTest {
                                 .andExpect(jsonPath("$.results[1].status").value("INVALID_STATUS"));
 
                 // Test Double Approve through batch
-                String batchReq2 = "{\"ids\": [\"" + idStr1 + "\"]}";
+                String batchReq2 = "{\"ids\": [\"" + idStr1 + "\"], \"initiator\": \"BatchAdmin\"}";
                 mockMvc.perform(post("/api/v1/documents/approve/batch")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(batchReq2))
@@ -273,7 +289,9 @@ class DocumentControllerTest {
                 String idStr = objectMapper.readTree(responseStr).get("id").asText();
 
                 // Submit the document DocumentStatus.SUBMITTED
-                mockMvc.perform(post("/api/v1/documents/{id}/submit", idStr))
+                mockMvc.perform(post("/api/v1/documents/{id}/submit", idStr)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"initiator\": \"Test User\"}"))
                                 .andExpect(status().isOk());
 
                 TestTransaction.flagForCommit();
@@ -328,7 +346,7 @@ class DocumentControllerTest {
                                 .andReturn().getResponse().getContentAsString();
                 String idStr2 = objectMapper.readTree(responseStr2).get("id").asText();
 
-                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"]}";
+                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"], \"initiator\": \"Test User\"}";
 
                 mockMvc.perform(post("/api/v1/documents/batch/get")
                                 .param("page", "0")
@@ -371,7 +389,7 @@ class DocumentControllerTest {
                                 .andReturn().getResponse().getContentAsString();
                 String idStr2 = objectMapper.readTree(responseStr2).get("id").asText();
 
-                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"]}";
+                String batchReq = "{\"ids\": [\"" + idStr1 + "\", \"" + idStr2 + "\"], \"initiator\": \"Test User\"}";
 
                 // Default sorting is createdAt desc (newest first)
                 mockMvc.perform(post("/api/v1/documents/batch/get")
@@ -386,7 +404,7 @@ class DocumentControllerTest {
 
         @Test
         void batchGet_ShouldReturn400_WhenInvalidSortByIsRequested() throws Exception {
-                String batchReq = "{\"ids\": [\"" + UUID.randomUUID() + "\"]}";
+                String batchReq = "{\"ids\": [\"" + UUID.randomUUID() + "\"], \"initiator\": \"Test User\"}";
 
                 mockMvc.perform(post("/api/v1/documents/batch/get")
                                 .param("sortBy", "author") // Invalid sort field
@@ -411,7 +429,8 @@ class DocumentControllerTest {
 
                 UUID unknownId = UUID.randomUUID();
 
-                String batchReq = "{\"ids\": [\"" + validId + "\", \"" + unknownId + "\"]}";
+                String batchReq = "{\"ids\": [\"" + validId + "\", \"" + unknownId
+                                + "\"], \"initiator\": \"Test User\"}";
 
                 mockMvc.perform(post("/api/v1/documents/batch/get")
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -424,7 +443,8 @@ class DocumentControllerTest {
 
         @Test
         void batchGet_ShouldReturnEmptyPage_WhenNoValidIdsFound() throws Exception {
-                String batchReq = "{\"ids\": [\"" + UUID.randomUUID() + "\", \"" + UUID.randomUUID() + "\"]}";
+                String batchReq = "{\"ids\": [\"" + UUID.randomUUID() + "\", \"" + UUID.randomUUID()
+                                + "\"], \"initiator\": \"Test User\"}";
 
                 mockMvc.perform(post("/api/v1/documents/batch/get")
                                 .contentType(MediaType.APPLICATION_JSON)

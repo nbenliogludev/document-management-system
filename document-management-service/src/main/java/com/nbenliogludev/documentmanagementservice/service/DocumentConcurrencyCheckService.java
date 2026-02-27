@@ -50,7 +50,7 @@ public class DocumentConcurrencyCheckService {
                 readyLatch.countDown();
                 try {
                     startLatch.await();
-                    documentService.approve(documentId);
+                    documentService.approve(documentId, "concurrency-tester", null);
                     successCount.incrementAndGet();
                 } catch (DocumentAlreadyApprovedException | InvalidDocumentStatusException
                         | DataIntegrityViolationException | ObjectOptimisticLockingFailureException e) {

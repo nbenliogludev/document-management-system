@@ -73,6 +73,8 @@ public class DocumentBackgroundWorkers {
                 try {
                     BatchRequest request = new BatchRequest();
                     request.setIds(idsToSubmit);
+                    request.setInitiator("system");
+                    request.setComment(null);
 
                     BatchResponse response = documentBatchService.batchSubmit(request);
                     BatchSummary summary = response.getSummary();
@@ -145,6 +147,8 @@ public class DocumentBackgroundWorkers {
                 try {
                     BatchRequest request = new BatchRequest();
                     request.setIds(idsToApprove);
+                    request.setInitiator("system");
+                    request.setComment(null);
 
                     BatchResponse response = documentBatchService.batchApprove(request);
                     BatchSummary summary = response.getSummary();

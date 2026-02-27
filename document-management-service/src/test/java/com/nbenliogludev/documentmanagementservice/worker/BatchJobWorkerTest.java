@@ -92,12 +92,12 @@ class BatchJobWorkerTest {
                                 eq(BatchJobItemStatus.PROCESSING), any(Instant.class)))
                                 .thenReturn(1);
 
-                when(documentBatchProcessor.approveOne(item.getDocumentId()))
+                when(documentBatchProcessor.approveOne(eq(item.getDocumentId()), eq("system"), isNull()))
                                 .thenReturn(BatchItemResult.builder().status(BatchItemStatus.OK).build());
 
                 batchJobWorker.processJobs();
 
-                verify(documentBatchProcessor).approveOne(item.getDocumentId());
+                verify(documentBatchProcessor).approveOne(eq(item.getDocumentId()), eq("system"), isNull());
                 assertEquals(BatchJobItemStatus.SUCCESS, item.getStatus());
                 assertEquals(BatchJobStatus.COMPLETED, job.getStatus());
                 assertEquals(1, job.getProcessedCount());
@@ -139,16 +139,16 @@ class BatchJobWorkerTest {
                                 eq(BatchJobItemStatus.PROCESSING), any(Instant.class)))
                                 .thenReturn(1);
 
-                when(documentBatchProcessor.approveOne(item.getDocumentId()))
+                when(documentBatchProcessor.approveOne(eq(item.getDocumentId()), eq("system"), isNull()))
                                 .thenReturn(BatchItemResult.builder().status(BatchItemStatus.OK).build());
-                when(documentBatchProcessor.approveOne(item2.getDocumentId()))
+                when(documentBatchProcessor.approveOne(eq(item2.getDocumentId()), eq("system"), isNull()))
                                 .thenReturn(BatchItemResult.builder().status(BatchItemStatus.NOT_FOUND)
                                                 .message("not found").build());
 
                 batchJobWorker.processJobs();
 
-                verify(documentBatchProcessor).approveOne(item.getDocumentId());
-                verify(documentBatchProcessor).approveOne(item2.getDocumentId());
+                verify(documentBatchProcessor).approveOne(eq(item.getDocumentId()), eq("system"), isNull());
+                verify(documentBatchProcessor).approveOne(eq(item2.getDocumentId()), eq("system"), isNull());
 
                 assertEquals(BatchJobItemStatus.SUCCESS, item.getStatus());
                 assertEquals(BatchJobItemStatus.FAILED, item2.getStatus());
@@ -182,7 +182,8 @@ class BatchJobWorkerTest {
                                 eq(BatchJobItemStatus.PROCESSING), any(Instant.class)))
                                 .thenReturn(1);
 
-                doThrow(new RuntimeException("Error")).when(documentBatchProcessor).approveOne(item.getDocumentId());
+                doThrow(new RuntimeException("Error")).when(documentBatchProcessor).approveOne(eq(item.getDocumentId()),
+                                eq("system"), isNull());
 
                 batchJobWorker.processJobs();
 

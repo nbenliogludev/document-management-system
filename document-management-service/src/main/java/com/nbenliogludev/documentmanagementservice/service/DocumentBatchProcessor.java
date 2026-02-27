@@ -23,9 +23,9 @@ public class DocumentBatchProcessor {
     private final DocumentService documentService;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public BatchItemResult submitOne(UUID id) {
+    public BatchItemResult submitOne(UUID id, String initiator, String comment) {
         try {
-            DocumentResponse document = documentService.performSubmit(id);
+            DocumentResponse document = documentService.performSubmit(id, initiator, comment);
             return BatchItemResult.builder()
                     .id(id)
                     .status(BatchItemStatus.OK)
@@ -52,9 +52,9 @@ public class DocumentBatchProcessor {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public BatchItemResult approveOne(UUID id) {
+    public BatchItemResult approveOne(UUID id, String initiator, String comment) {
         try {
-            DocumentResponse document = documentService.performApprove(id);
+            DocumentResponse document = documentService.performApprove(id, initiator, comment);
             return BatchItemResult.builder()
                     .id(id)
                     .status(BatchItemStatus.OK)

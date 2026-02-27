@@ -23,4 +23,10 @@ public class DocumentHistoryResponse {
 
     @Schema(description = "Timestamp when the action occurred", example = "2026-02-20T10:00:00Z")
     private Instant createdAt;
+
+    @Schema(description = "User or system actor who initiated the action", example = "admin_user")
+    private String actor;
+
+    @Schema(description = "Optional comment accompanying the action", example = "Checked and submitted")
+    private String comment;
 }

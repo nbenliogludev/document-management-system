@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-add-history-actor-and-comment
+      author: antigravity
+      changes:
+        - sql:
+            sql: |
+              ALTER TABLE document_history ADD COLUMN IF NOT EXISTS actor VARCHAR(255);
+              ALTER TABLE document_history ADD COLUMN IF NOT EXISTS comment TEXT;
+              UPDATE document_history SET actor = 'system' WHERE actor IS NULL;
+              ALTER TABLE document_history ALTER COLUMN actor SET NOT NULL;

@@ -1,5 +1,6 @@
 package com.nbenliogludev.documentmanagementservice.controller;
 
+import com.nbenliogludev.documentmanagementservice.domain.dto.ApproveRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.ConcurrencyApproveCheckRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.ConcurrencyApproveCheckResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.CreateDocumentRequest;
@@ -10,6 +11,7 @@ import com.nbenliogludev.documentmanagementservice.domain.dto.BatchRequest;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchJobResponse;
 import com.nbenliogludev.documentmanagementservice.domain.dto.BatchJobItemResponse;
+import com.nbenliogludev.documentmanagementservice.domain.dto.SubmitRequest;
 import com.nbenliogludev.documentmanagementservice.service.DocumentConcurrencyCheckService;
 import com.nbenliogludev.documentmanagementservice.service.DocumentService;
 import com.nbenliogludev.documentmanagementservice.service.DocumentBatchService;
@@ -83,8 +85,9 @@ public class DocumentController {
         })
         @PostMapping("/{id}/submit")
         public DocumentResponse submit(
-                        @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id) {
-                return documentService.submit(id);
+                        @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id,
+                        @Valid @RequestBody SubmitRequest request) {
+                return documentService.submit(id, request.getInitiator(), request.getComment());
         }
 
         @Operation(summary = "Approve document", description = "Approves a submitted document.")
@@ -95,8 +98,9 @@ public class DocumentController {
         })
         @PostMapping("/{id}/approve")
         public DocumentResponse approve(
-                        @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id) {
-                return documentService.approve(id);
+                        @Parameter(description = "UUID of the document", required = true) @PathVariable UUID id,
+                        @Valid @RequestBody ApproveRequest request) {
+                return documentService.approve(id, request.getInitiator(), request.getComment());
         }
 
         @Operation(summary = "Get document history", description = "Retrieves the status transition history of a document.")
