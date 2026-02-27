@@ -124,3 +124,19 @@ java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
 The logging is structured in a minimalistic format without unnecessary spam.
 - **CLI**: Outputs `[generator] creating document 1/N` and a final summary `[generator] finished: requested=X, success=Y, failed=Z, tookMs=...`.
 - **Workers**: Show the start of the iteration, a short sample of UUIDs (first 3), and a summary of the batch results `[worker] batch result: total=X, success=Y, error=Z, tookMs=...`. If the database is empty, spam is suppressed with the message `no documents found`.
+
+## Test Coverage
+
+The system includes integration-level unit tests covering required business scenarios:
+
+| Requirement | Test |
+|------------|------|
+| Happy-path single approval | BatchJobWorkerTest.processJobs_ShouldProcessSuccessfullyAndCompleteJob |
+| Batch submit | BatchJobServiceTest.createApproveJob_ShouldDeduplicateAndSave |
+| Batch approve with partial results | BatchJobWorkerTest.processJobs_ShouldMarkFailedItemsAndPartialSuccessJob |
+| Approval rollback on registry failure | DocumentApprovalCompensationServiceTest.compensateApprovalRegistryFailure_ShouldCompensateSuccessfully_WhenDocumentApprovedAndRegistryMissing |
+| Compensation retry / failure handling | ApprovalRegistryCompensationWorkerTest.processCompensations_ShouldUpdateStatus_WhenCompensationSucceeds |
+
+Run all tests:
+
+mvn test
