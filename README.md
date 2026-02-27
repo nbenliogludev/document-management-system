@@ -109,7 +109,7 @@ Key settings for `document-management-service` (`application.yml`):
 - Database: URL `jdbc:postgresql://localhost:5433/documents_db`.
 - Approval Registry Mode (`app.approval-registry.mode`): `local` (uses local DB) or `grpc` (calls the external remote gRPC service via port 9090).
 - Background Workers:
-  ```bash
+```yaml
   app:
     workers:
       enabled: true
