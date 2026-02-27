@@ -1,9 +1,24 @@
 # Document Management System (Test Assignment)
 
 ## Brief Description
-The project is a server-side application for managing the document lifecycle. It supports `DRAFT`, `SUBMITTED`, and `APPROVED` statuses. The system implements transactional single and batch status transfer operations, parallel editing protection (Concurrency Check), as well as background processing of documents by scheduled workers (from `DRAFT` to `APPROVED`).
+The project is a small distributed system for managing the document lifecycle. It consists of a REST service, a gRPC consistency service, asynchronous delivery mechanisms, and Saga-style rollbacks. It supports `DRAFT`, `SUBMITTED`, and `APPROVED` statuses. The system implements transactional single and batch status transfer operations, parallel editing protection (Concurrency Check), and background processing of documents by scheduled workers.
 
 A separate Java CLI utility (`document-generator-cli`) is included for the rapid batch generation of test data.
+
+## Architecture Overview
+The system consists of two independent services and shared infrastructure:
+- **Document Management Service**: The main Spring Boot REST API.
+- **Approval Registry gRPC Service**: An external consistency service.
+
+Two separate PostgreSQL databases are used:
+- `documents_db`: Used exclusively by the Document Management Service.
+- `approval_registry_db`: Used exclusively by the gRPC Approval Registry.
+
+**Interaction Flow:**
+1. A document is approved in the Document Management Service.
+2. An approval event is sent via the **Outbox Pattern** for eventual consistency.
+3. The Outbox Worker delivers the event to the external gRPC Approval Registry.
+4. If the gRPC registry write fails permanently, a **Compensation Worker** triggers a Saga-style rollback, reverting the document's state safely from `APPROVED` back to `SUBMITTED`. This restores system consistency when the remote registry write completes with permanent failure.
 
 ## Implemented Features
 - Document Management (Create, Read, Search).
@@ -29,21 +44,51 @@ A separate Java CLI utility (`document-generator-cli`) is included for the rapid
 
 ## Project Structure
 ```text
-/document-management-system
-├── /document-management-service     # Main Spring Boot backend API
-├── /approval-registry-grpc-service  # Independent gRPC Microservice for Approvals
-├── /document-generator-cli          # Independent Java CLI for data generation
-└── docker-compose.yml               # PostgreSQL DBs (Main + Registry)
+document-management-system
+├── document-management-service     # Main REST API (run locally)
+├── approval-registry-grpc-service  # gRPC approval registry (runs in Docker)
+├── document-generator-cli          # Load generator
+└── docker-compose.yml              # Infra (Postgres + gRPC)
 ```
 
-## How to Run
+## Runtime Model
 
-### 1. Start the DBs & gRPC Service
+### Step 1: Start Infrastructure & gRPC Service
 From the project root, start the PostgreSQL databases and the gRPC application container:
 ```bash
 docker compose up -d
 ```
 *This will spin up `documents-postgres` (5433), `approval-registry-postgres` (5434), and the `approval-registry-grpc-service` container (9090).*
+
+**Note:** The Document Management Service is **NOT** run via `docker-compose` intentionally. It should be started manually locally to allow for direct debugging, live development, and simulating real distributed service-to-service interactions.
+
+### Step 2: Start the Main API Service
+Navigate to the backend directory and launch the application via the maven wrapper:
+```bash
+cd document-management-service
+./mvnw spring-boot:run
+```
+*Note: Liquibase will automatically apply schemas on startup.*
+
+### Step 3 (Optional): Build and Run the Load Generator
+The generator is packaged as an independent fat JAR.
+First, build it:
+```bash
+cd document-generator-cli
+mvn clean package
+```
+Launch the generation of documents via the `--count` configuration argument:
+```bash
+java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
+```
+
+### Swagger
+Interactive documentation is available at:
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+## Consistency & Compensation
+
+Approval is handled asynchronously via the Outbox Pattern to guarantee eventual consistency between the local database and the remote registry. Failure of the remote registry triggers a retry network for robust redelivery. If the failure is permanent, a compensation worker restores global consistency by safely reverting the document from `APPROVED` back to `SUBMITTED`. This ensures no distributed inconsistency remains.
 
 ### Automatic Saga Compensation (Outbox)
 
@@ -58,18 +103,6 @@ A scheduled worker (`ApprovalRegistryCompensationWorker`) parses events mapped u
 3. Call the Approve Endpoint. The document will change to `APPROVED` globally.
 4. Watch the `document-management-service` logs. After several retry warnings mapping `FAILED`, a terminal `FAILED_PERMANENT` triggers.
 5. Notice the automatic compensator swap the document back to `SUBMITTED`, printing an `APPROVAL_REVERTED_REGISTRY_FAILED` trace under the Document History endpoints.
-
-### 2. Start the Main API Service
-Navigate to the backend directory and launch the application via the maven wrapper:
-```bash
-cd document-management-service
-./mvnw spring-boot:run
-```
-*Note: Liquibase will automatically apply schemas on startup.*
-
-### 3. Swagger
-Interactive documentation is available at:
-[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ## Configuration
 Key settings for `document-management-service` (`application.yml`):
@@ -90,21 +123,7 @@ Key settings for `document-management-service` (`application.yml`):
       retry-backoff-ms: 2000
   ```
 
-## How to Run the CLI Generator
 
-The generator is packaged as an independent fat JAR.
-
-**1. How to build:**
-```bash
-cd document-generator-cli
-mvn clean package
-```
-
-**2. How to run:**
-Launch the generation of $N$ documents via the `--count` configuration argument:
-```bash
-java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
-```
 
 ## API Examples / Verification Scenario
 
