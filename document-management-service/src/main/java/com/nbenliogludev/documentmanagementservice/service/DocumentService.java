@@ -101,11 +101,11 @@ public class DocumentService {
     }
 
     @Transactional
-    public DocumentResponse submit(UUID id) {
-        return performSubmit(id);
+    public DocumentResponse submit(UUID id, String initiator, String comment) {
+        return performSubmit(id, initiator, comment);
     }
 
-    public DocumentResponse performSubmit(UUID id) {
+    public DocumentResponse performSubmit(UUID id, String initiator, String comment) {
         Document document = documentRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundException(id));
 
@@ -122,18 +122,19 @@ public class DocumentService {
             throw new InvalidDocumentStatusException(id, document.getStatus().name(), DocumentStatus.SUBMITTED.name());
         }
 
-        createHistoryRecord(saved.getId(), "SUBMITTED", DocumentStatus.DRAFT, DocumentStatus.SUBMITTED);
+        createHistoryRecord(saved.getId(), "SUBMITTED", DocumentStatus.DRAFT, DocumentStatus.SUBMITTED, initiator,
+                comment);
 
-        log.info("Document {} submitted", id);
+        log.info("Document {} submitted by {}", id, initiator);
         return mapToResponse(saved);
     }
 
     @Transactional
-    public DocumentResponse approve(UUID id) {
-        return performApprove(id);
+    public DocumentResponse approve(UUID id, String initiator, String comment) {
+        return performApprove(id, initiator, comment);
     }
 
-    public DocumentResponse performApprove(UUID id) {
+    public DocumentResponse performApprove(UUID id, String initiator, String comment) {
         Document document = documentRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundException(id));
 
@@ -176,9 +177,10 @@ public class DocumentService {
             throw new RuntimeException("Failed to track Outbox metrics", e);
         }
 
-        createHistoryRecord(saved.getId(), "APPROVED", DocumentStatus.SUBMITTED, DocumentStatus.APPROVED);
+        createHistoryRecord(saved.getId(), "APPROVED", DocumentStatus.SUBMITTED, DocumentStatus.APPROVED, initiator,
+                comment);
 
-        log.info("Document {} approved", id);
+        log.info("Document {} approved by {}", id, initiator);
         return mapToResponse(saved);
     }
 
@@ -193,6 +195,8 @@ public class DocumentService {
                         .action(history.getAction())
                         .fromStatus(history.getFromStatus())
                         .toStatus(history.getToStatus())
+                        .actor(history.getActor())
+                        .comment(history.getComment())
                         .createdAt(history.getCreatedAt())
                         .build())
                 .collect(Collectors.toList());
@@ -232,12 +236,15 @@ public class DocumentService {
                 .build();
     }
 
-    private void createHistoryRecord(UUID documentId, String action, DocumentStatus from, DocumentStatus to) {
+    private void createHistoryRecord(UUID documentId, String action, DocumentStatus from, DocumentStatus to,
+            String actor, String comment) {
         DocumentHistory history = new DocumentHistory();
         history.setDocumentId(documentId);
         history.setAction(action);
         history.setFromStatus(from);
         history.setToStatus(to);
+        history.setActor(actor);
+        history.setComment(comment);
         documentHistoryRepository.save(history);
     }
 

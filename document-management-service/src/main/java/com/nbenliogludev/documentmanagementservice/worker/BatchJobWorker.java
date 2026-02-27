@@ -97,7 +97,7 @@ public class BatchJobWorker {
             processedThisTick++;
 
             try {
-                BatchItemResult result = documentBatchProcessor.approveOne(item.getDocumentId());
+                BatchItemResult result = documentBatchProcessor.approveOne(item.getDocumentId(), "system", null);
                 if (result.getStatus() == BatchItemStatus.OK) {
                     item.setStatus(BatchJobItemStatus.SUCCESS);
                     successBatchCount++;

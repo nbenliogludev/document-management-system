@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -40,6 +41,9 @@ class BatchJobServiceTest {
 
     @InjectMocks
     private BatchJobService batchJobService;
+
+    @Captor
+    private ArgumentCaptor<List<BatchJobItem>> itemsCaptor;
 
     private UUID documentId1;
     private UUID documentId2;
@@ -73,7 +77,6 @@ class BatchJobServiceTest {
         verify(batchJobRepository).save(jobCaptor.capture());
         assertEquals(2, jobCaptor.getValue().getTotalCount());
 
-        ArgumentCaptor<List<BatchJobItem>> itemsCaptor = ArgumentCaptor.forClass(List.class);
         verify(batchJobItemRepository).saveAll(itemsCaptor.capture());
 
         List<BatchJobItem> savedItems = itemsCaptor.getValue();

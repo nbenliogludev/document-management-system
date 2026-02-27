@@ -29,7 +29,7 @@ public class DocumentBatchService {
         int failed = 0;
 
         for (UUID id : request.getIds()) {
-            BatchItemResult result = batchProcessor.submitOne(id);
+            BatchItemResult result = batchProcessor.submitOne(id, request.getInitiator(), request.getComment());
             results.add(result);
             if (result.getStatus() == BatchItemStatus.OK) {
                 ok++;
@@ -60,7 +60,7 @@ public class DocumentBatchService {
         int failed = 0;
 
         for (UUID id : request.getIds()) {
-            BatchItemResult result = batchProcessor.approveOne(id);
+            BatchItemResult result = batchProcessor.approveOne(id, request.getInitiator(), request.getComment());
             results.add(result);
             if (result.getStatus() == BatchItemStatus.OK) {
                 ok++;
