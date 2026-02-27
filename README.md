@@ -37,8 +37,8 @@ Two separate PostgreSQL databases are used:
 - Spring Boot 3
 - Spring Data JPA / Hibernate
 - PostgreSQL (via Docker Compose)
-- Liquibase (Automatic DB migrations)
-- OpenAPI / Swagger (Interactive documentation)
+- Liquibase
+- OpenAPI / Swagger
 - Maven
 - Docker / Docker Compose
 
