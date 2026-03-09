@@ -136,53 +136,64 @@ Key settings for `document-management-service` (`application.yml`):
 
 ## API Test Examples (Swagger / Curl)
 
-### 1. Concurrency Check Test
-Use the dedicated concurrency endpoint:
+### Concurrency Check
 
-POST /api/v1/documents/{id}/approve/concurrency-check
+| Method | Address | Description |
+|------|------|-------------|
+| POST | `/api/v1/documents/{id}/approve/concurrency-check` | Simulates parallel approval attempts to verify optimistic locking |
 
-Example body:
+Example Request Body:
+```json
 {
   "threads": 5,
   "attempts": 3
 }
+```
 
-This simulates parallel approval attempts.
-If optimistic locking works correctly — only one approval succeeds and the rest are safely rejected.
+Expected Result:
+Only one approval succeeds and the rest are safely rejected.
 
 ---
 
-### 2. Batch Submit Endpoint
-POST /api/v1/documents/submit/batch
+### Batch Submit
 
-Pass a list of UUIDs:
+| Method | Address | Description |
+|------|------|-------------|
+| POST | `/api/v1/documents/submit/batch` | Submit multiple documents in a single batch operation |
 
+Example Request Body:
+```json
 {
   "ids": [
     "valid-id-1",
     "invalid-or-already-submitted-id"
   ]
 }
+```
 
-Expected result:
-
+Expected Result:
 HTTP 200 OK
-
+```json
 {
   "total": 2,
   "success": 1,
   "error": 1
 }
+```
 
+Additional Notes:
 Batch processing continues even if some documents fail.
 
 ---
 
-### 3. Batch Approve with Partial Success
-POST /api/v1/documents/approve/batch
+### Batch Approve
 
-Example:
+| Method | Address | Description |
+|------|------|-------------|
+| POST | `/api/v1/documents/approve/batch` | Approve multiple documents in a single batch operation |
 
+Example Request Body:
+```json
 {
   "ids": [
     "submitted-id",
@@ -190,49 +201,53 @@ Example:
     "already-approved-id"
   ]
 }
+```
 
+Expected Result:
 System returns partial result without stopping the transaction flow.
 
 ---
 
-### 4. Approval Rollback (Registry Failure Simulation)
+### Approval Rollback Simulation
 
+| Method | Address | Description |
+|------|------|-------------|
+| POST | `/api/v1/documents/{id}/approve` | Simulates an approval rollback when the external gRPC registry fails permanently |
+
+Expected Result:
+If registry write fails permanently: `APPROVED` automatically reverted to `SUBMITTED` via `ApprovalRegistryCompensationWorker`.
+
+Additional Notes:
 To simulate rollback:
-
 1. Stop gRPC registry:
-
-docker-compose stop approval-registry-grpc-service
-
-2. Approve a document:
-
-POST /api/v1/documents/{id}/approve
-
+   ```bash
+   docker-compose stop approval-registry-grpc-service
+   ```
+2. Approve a document via the API endpoint.
 3. Watch logs.
-
-If registry write fails permanently:
-
-APPROVED → automatically reverted to SUBMITTED
-
-via ApprovalRegistryCompensationWorker
 
 ---
 
-### 5. Batch Get with Pagination
+### Batch Get with Pagination
 
-POST /api/v1/documents/batch/get?page=0&size=10&sortBy=createdAt&sortDir=desc
+| Method | Address | Description |
+|------|------|-------------|
+| POST | `/api/v1/documents/batch/get?page=0&size=10&sortBy=createdAt&sortDir=desc` | Retrieve a paginated batch of documents by their IDs |
 
-Body:
-
+Example Request Body:
+```json
 {
   "ids": ["uuid1", "uuid2"]
 }
+```
 
+Expected Result:
+Returns the requested documents. Invalid fields return HTTP 400.
+
+Additional Notes:
 Sorting allowed only by:
-
-- title
-- createdAt
-
-Invalid fields → HTTP 400
+- `title`
+- `createdAt`
 
 ## Logging
 
