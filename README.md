@@ -142,7 +142,6 @@ Key settings for `document-management-service` (`application.yml`):
 |------|------|-------------|
 | POST | `/api/v1/documents/{id}/approve/concurrency-check` | Simulates parallel approval attempts to verify optimistic locking |
 
-Example Request Body:
 ```json
 {
   "threads": 5,
