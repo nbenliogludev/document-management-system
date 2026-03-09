@@ -40,7 +40,7 @@ Two separate PostgreSQL databases are used:
 - Liquibase
 - OpenAPI / Swagger
 - Maven
-- Docker / Docker Compose
+- Docker
 
 ## Project Structure
 ```text
@@ -161,7 +161,6 @@ Only one approval succeeds and the rest are safely rejected.
 |------|------|-------------|
 | POST | `/api/v1/documents/submit/batch` | Submit multiple documents in a single batch operation |
 
-Example Request Body:
 ```json
 {
   "ids": [
@@ -172,7 +171,6 @@ Example Request Body:
 ```
 
 Expected Result:
-HTTP 200 OK
 ```json
 {
   "total": 2,
@@ -192,7 +190,6 @@ Batch processing continues even if some documents fail.
 |------|------|-------------|
 | POST | `/api/v1/documents/approve/batch` | Approve multiple documents in a single batch operation |
 
-Example Request Body:
 ```json
 {
   "ids": [
