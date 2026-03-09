@@ -172,3 +172,23 @@ The project includes built-in OpenAPI Swagger documentation. It serves as an int
 
 Once the `Document Management Service` is running, you can access the Swagger UI by visiting:
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+---
+
+## Test Coverage
+
+The system includes integration-level unit tests covering required business scenarios:
+
+| Requirement | Test |
+|------------|------|
+| Happy-path single approval | `BatchJobWorkerTest.processJobs_ShouldProcessSuccessfullyAndCompleteJob` |
+| Batch submit | `BatchJobServiceTest.createApproveJob_ShouldDeduplicateAndSave` |
+| Batch approve with partial results | `BatchJobWorkerTest.processJobs_ShouldMarkFailedItemsAndPartialSuccessJob` |
+| Approval rollback on registry failure | `DocumentApprovalCompensationServiceTest.compensateApprovalRegistryFailure_ShouldCompensateSuccessfully_WhenDocumentApprovedAndRegistryMissing` |
+| Compensation retry / failure handling | `ApprovalRegistryCompensationWorkerTest.processCompensations_ShouldUpdateStatus_WhenCompensationSucceeds` |
+
+Run all tests from the service directory:
+```bash
+mvn test
+```
+
