@@ -1,268 +1,174 @@
-# Document Management System (Test Assignment)
+# Document Management System
 
-## Brief Description
-The project is a small distributed system for managing the document lifecycle. It consists of a REST service, a gRPC consistency service, asynchronous delivery mechanisms, and Saga-style rollbacks. It supports `DRAFT`, `SUBMITTED`, and `APPROVED` statuses. The system implements transactional single and batch status transfer operations, parallel editing protection (Concurrency Check), and background processing of documents by scheduled workers.
+## Overview
 
-A separate Java CLI utility (`document-generator-cli`) is included for the rapid batch generation of test data.
+The Document Management System is a comprehensive solution designed to handle the asynchronous creation and lifecycle processing of business documents.
 
-## Architecture Overview
-The system consists of two independent services and shared infrastructure:
-- **Document Management Service**: The main Spring Boot REST API.
-- **Approval Registry gRPC Service**: An external consistency service.
+## 1. Technologies
 
-Two separate PostgreSQL databases are used:
-- `documents_db`: Used exclusively by the Document Management Service.
-- `approval_registry_db`: Used exclusively by the gRPC Approval Registry.
+- **Java 17+**
+- **Spring Boot 3**
+- **PostgreSQL**
+- **gRPC**
+- **Docker / Docker Compose**
+- **Maven**
+- **OpenAPI / Swagger**
 
-**Interaction Flow:**
-1. A document is approved in the Document Management Service.
-2. An approval event is sent via the **Outbox Pattern** for eventual consistency.
-3. The Outbox Worker delivers the event to the external gRPC Approval Registry.
-4. If the gRPC registry write fails permanently, a **Compensation Worker** triggers a Saga-style rollback, reverting the document's state safely from `APPROVED` back to `SUBMITTED`. This restores system consistency when the remote registry write completes with permanent failure.
+---
 
-## Implemented Features
-- Document Management (Create, Read, Search).
-- Lifecycle transitions: single `submit` and `approve`.
-- Batch processing: `batch submit` and `batch approve` with "Partial Success" handling without transaction interruption due to single errors.
-- History tracking: `Approval Registry` and `Document History` for status audit.
-- Concurrency Check API (protection against writing outdated versions).
-- Background workers:
-  - `submit-worker` (automatic `DRAFT` -> `SUBMITTED`)
-  - `approve-worker` (automatic `SUBMITTED` -> `APPROVED`)
-  - `outbox-worker` (eventual consistency event publisher for the Approval Registry)
-- CLI Generator utility for load testing (via HTTP API).
+## 2. Architecture Description
 
-## Technologies
-- Java 21
-- Spring Boot 3
-- Spring Data JPA / Hibernate
-- PostgreSQL (via Docker Compose)
-- Liquibase
-- OpenAPI / Swagger
-- Maven
-- Docker
+The architecture is divided into three main components:
 
-## Project Structure
-```text
-document-management-system
-├── document-management-service     # Main REST API (run locally)
-├── approval-registry-grpc-service  # gRPC approval registry (runs in Docker)
-├── document-generator-cli          # Load generator
-└── docker-compose.yml              # Infra (Postgres + gRPC)
-```
+1. **Document Management Service**: The core backend application that exposes the REST API, manages the persistent state of all documents, and orchestrates background jobs.
+2. **Approval Registry gRPC Service**: An external consistency service that records approved documents. The Document Management Service communicates with it via gRPC using the Outbox pattern for eventual consistency.
+3. **Document Generator Utility**: A standalone command-line application designed to load-test and populate the system by calling the Document Management Service API. It is designed to create many documents, so you can set the number of documents which will be created.
 
-## Runtime Model
+---
+
+## 3. Document Management Service
+
+This is the primary Spring Boot application. It exposes endpoints to create, read, update, and delete documents. More importantly, it manages asynchronous document processing through two dedicated background workers that run continuously within the service.
+
+### API Endpoints
+
+The service provides a comprehensive REST API. Below is a summary of the available endpoints:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| **POST** | `/api/v1/documents` | Create a new document. Automatically assigned a `DRAFT` status. |
+| **GET** | `/api/v1/documents/{id}` | Retrieve a specific document by its ID. |
+| **GET** | `/api/v1/documents` | Search documents using paginated and filterable criteria. |
+| **POST** | `/api/v1/documents/{id}/submit` | Transition a document from `DRAFT` to `SUBMITTED`. |
+| **POST** | `/api/v1/documents/{id}/approve` | Transition a document from `SUBMITTED` to `APPROVED`. |
+| **GET** | `/api/v1/documents/{id}/history` | Fetch the lifecycle history of a specific document. |
+| **POST** | `/api/v1/documents/submit/batch` | Synchronously submit a batch of documents. |
+| **POST** | `/api/v1/documents/approve/batch` | Synchronously approve a batch of documents. |
+| **POST** | `/api/v1/documents/batch/get` | Retrieve a list of documents by passing an array of IDs. |
+| **POST** | `/api/v1/documents/{id}/approve/concurrency-check` | Approve with an optimistic locking concurrency check to test system behavior. |
+| **POST** | `/api/v1/documents/batch/approve-jobs` | Create an asynchronous background job to approve a large batch of documents. Returns a `jobId`. |
+| **GET** | `/api/v1/documents/batch-jobs/{jobId}` | Poll the status and progress of a specific asynchronous batch job. |
+| **GET** | `/api/v1/documents/batch-jobs/{jobId}/items` | Retrieve the paginated items and individual statuses associated with a specific batch job. |
+
+### Asynchronous Batch Jobs
+
+For large batch operations (e.g., approving 5,000 documents at once), standard synchronous HTTP requests risk hitting timeout limits since processing can take more than a minute. 
+
+To handle this reliably, the system implements an **Asynchronous Job Pattern**. When you submit a large batch (via `/batch/approve-jobs`), the system immediately accepts the request and returns a unique `jobId`. A background worker then processes the batch items asynchronously. Clients can use the `jobId` to poll the `/batch-jobs/{jobId}` endpoints and track the progress of the batch without holding open a long-lived HTTP connection.
+
+### Background Workers
+
+* **Submit Work worker**: Handles the initial submission phase. When a document is created (often in a `DRAFT` state), this worker asynchronously picks it up, validates its contents, and transitions it to a `SUBMITTED` state, ready for further processing.
+* **Approve Order worker**: Responsible for processing the submitted documents by asynchronously changing their status to `APPROVED`. This ensures that complex approval logic runs independently of the user-facing API requests, allowing the system to scale and remain responsive.
+
+### Outbox Pattern for Consistency
+
+To ensure the remote `Approval Registry gRPC Service` is always synchronized with local state changes without relying on distributed transactions, the Document Management Service implements the **Outbox Pattern**. 
+Whenever a document is successfully `APPROVED`, a corresponding event is saved to a local outbox table. A background process reliably polls this outbox and sends the events to the gRPC service, guaranteeing at-least-once delivery.
+
+---
+
+## 4. Approval Registry gRPC Service
+
+The **Approval Registry gRPC Service** is an external gRPC-based microservice whose sole responsibility is to act as a global ledger of approved documents. 
+
+When the Document Management Service successfully approves a document, it asynchronously forwards an approval record to this service. This service receives the record and stores it in its own independent database (`approval_registry_db`), creating a decoupled, highly available, and eventually consistent audit trail for all finalized properties across the distributed system.
+
+---
+
+## 5. Document Generator Utility
+
+To test the system or simulate real-world traffic, the project includes the Document Generator Utility. Rather than manually creating documents, this command-line tool sends an automated stream of HTTP requests to the Document Management Service API based on parameters.
+
+### Configuration Parameters
+
+The generator loads default parameters from its internal `generator.properties` file but allows you to override them with the following CLI arguments:
+
+- `--count=<N>`: Total number of documents to generate.
+- `--base-url=<URL>`: The target Document Management Service API URL.
+- `--delay-ms=<N>`: Delay in milliseconds between each document creation request.
+- `--author-prefix=<String>`: The prefix string for the document author field.
+- `--title-prefix=<String>`: The prefix string for the document title.
+- `--number-prefix=<String>`: The prefix string for the document number.
+
+You can set these arguments when running the utility directly via Java.
+
+---
+
+## Flow of Document Generation and Processing
+
+1. **Generation**: The Document Generator Utility starts, reads its configuration (from `generator.properties` or CLI arguments), and issues `N` create requests to the API.
+2. **Ingestion**: The Document Management Service API receives the requests and persists the new documents in an initial `DRAFT` state.
+3. **Submission**: The **Submit Work worker** periodically polls the database for new drafts, processes their submission logic, and updates their state to `SUBMITTED`.
+4. **Approval**: The **Approve Order worker** detects the newly submitted documents and asynchronously updates their status to `APPROVED`, completing the workflow.
+
+---
+
+## Getting Started
+
+### Prerequisites
+* Java 17+
+* Maven
+* Docker & Docker Compose
 
 ### Step 1: Start Infrastructure & gRPC Service
-From the project root, start the PostgreSQL databases and the gRPC application container:
-```bash
-docker compose up -d
-```
-*This will spin up `documents-postgres` (5433), `approval-registry-postgres` (5434), and the `approval-registry-grpc-service` container (9090).*
 
-**Note:** The Document Management Service is **NOT** run via `docker-compose` intentionally. It should be started manually locally to allow for direct debugging, live development, and simulating real distributed service-to-service interactions.
+Before running any Java application, you must spin up the required PostgreSQL databases (`documents_db` and `approval_registry_db`) along with the `Approval Registry gRPC Service` itself. These are provided via Docker Compose.
 
-### Step 2: Start the Main API Service
-Navigate to the backend directory and launch the application via the maven wrapper:
-```bash
-cd document-management-service
-./mvnw spring-boot:run
-```
-*Note: Liquibase will automatically apply schemas on startup.*
-
-### Step 3 (Optional): Build and Run the Load Generator
-The generator is packaged as an independent fat JAR.
-First, build it:
-```bash
-cd document-generator-cli
-mvn clean package
-```
-Launch the generation of documents via the `--count` configuration argument:
-```bash
-java -jar target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=50
-```
-
-### Swagger
-Interactive documentation is available at:
-[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
-
-## Consistency & Compensation
-
-Approval is handled asynchronously via the Outbox Pattern to guarantee eventual consistency between the local database and the remote registry. Failure of the remote registry triggers a retry network for robust redelivery. If the failure is permanent, a compensation worker restores global consistency by safely reverting the document from `APPROVED` back to `SUBMITTED`. This ensures no distributed inconsistency remains.
-
-### Automatic Saga Compensation (Outbox)
-
-If the `ApprovalRegistry` gRPC service permanently fails to store a new `APPROVED` document state (i.e. reaches its max-retry limit), the system enacts a localized Saga compensating action instead of a silent distributed failure.
-
-A scheduled worker (`ApprovalRegistryCompensationWorker`) parses events mapped uniquely as `FAILED_PERMANENT`. The worker then re-inspects the document, and provided the document hasn't been reverted or modified externally, swaps its state from `APPROVED` safely back to `SUBMITTED`, preserving history alongside robust Optimistic Locks.
-
-**To Simulate a Permanent Failure**
-1. Stop the external gRPC service container:
-   `docker-compose stop approval-registry-grpc-service`
-2. Create and Submit a document normally via the REST API
-3. Call the Approve Endpoint. The document will change to `APPROVED` globally.
-4. Watch the `document-management-service` logs. After several retry warnings mapping `FAILED`, a terminal `FAILED_PERMANENT` triggers.
-5. Notice the automatic compensator swap the document back to `SUBMITTED`, printing an `APPROVAL_REVERTED_REGISTRY_FAILED` trace under the Document History endpoints.
-
-## Configuration
-Key settings for `document-management-service` (`application.yml`):
-- Database: URL `jdbc:postgresql://localhost:5433/documents_db`.
-- Approval Registry Mode (`app.approval-registry.mode`): `local` (uses local DB) or `grpc` (calls the external remote gRPC service via port 9090).
-- Background Workers:
-```yaml
-  app:
-    workers:
-      enabled: true
-      batch-size: 20
-      submit-interval-ms: 10000
-      approve-interval-ms: 15000
-    outbox:
-      enabled: true
-      batch-size: 50
-      polling-interval-ms: 5000
-      max-retries: 3
-      retry-backoff-ms: 2000
-  ```
-
-
-
-## API Examples / Verification Scenario
-
-**Scenario:**
-1. Start the DB and launch the service.
-2. Generate data via the CLI: `java -jar document-generator-cli/target/document-generator-cli-1.0-SNAPSHOT-shaded.jar --count=20`.
-3. Open `app.log` or the Spring Boot console: you will see how the `submit-worker` picks up `DRAFT`s in batches and transitions them to `SUBMITTED`. Then the `approve-worker` will pick them up and transition them to `APPROVED`.
-4. Open the Swagger UI and request `GET /api/v1/documents`. You will see the created documents with the `APPROVED` status.
-
-## API Test Examples (Swagger / Curl)
-
-### Concurrency Check
-
-| Method | Address | Description |
-|------|------|-------------|
-| POST | `/api/v1/documents/{id}/approve/concurrency-check` | Simulates parallel approval attempts to verify optimistic locking |
-
-```json
-{
-  "threads": 5,
-  "attempts": 3
-}
-```
-
-Expected Result:
-Only one approval succeeds and the rest are safely rejected.
-
----
-
-### Batch Submit
-
-| Method | Address | Description |
-|------|------|-------------|
-| POST | `/api/v1/documents/submit/batch` | Submit multiple documents in a single batch operation |
-
-```json
-{
-  "ids": [
-    "valid-id-1",
-    "invalid-or-already-submitted-id"
-  ]
-}
-```
-
-Expected Result:
-```json
-{
-  "total": 2,
-  "success": 1,
-  "error": 1
-}
-```
-
-Additional Notes:
-Batch processing continues even if some documents fail.
-
----
-
-### Batch Approve
-
-| Method | Address | Description |
-|------|------|-------------|
-| POST | `/api/v1/documents/approve/batch` | Approve multiple documents in a single batch operation |
-
-```json
-{
-  "ids": [
-    "submitted-id",
-    "not-found-id",
-    "already-approved-id"
-  ]
-}
-```
-
-Expected Result:
-System returns partial result without stopping the transaction flow.
-
----
-
-### Approval Rollback Simulation
-
-| Method | Address | Description |
-|------|------|-------------|
-| POST | `/api/v1/documents/{id}/approve` | Simulates an approval rollback when the external gRPC registry fails permanently |
-
-Expected Result:
-If registry write fails permanently: `APPROVED` automatically reverted to `SUBMITTED` via `ApprovalRegistryCompensationWorker`.
-
-Additional Notes:
-To simulate rollback:
-1. Stop gRPC registry:
+1. Navigate to the project root directory.
+2. Start the infrastructure in detached mode:
    ```bash
-   docker-compose stop approval-registry-grpc-service
+   docker-compose up -d
    ```
-2. Approve a document via the API endpoint.
-3. Watch logs.
+   *This starts the `documents-postgres` (5433), `approval-registry-postgres` (5434), and `approval-registry-grpc-service` (9090) containers.*
+
+### Step 2: Running the Document Management Service
+
+This core project runs natively rather than in Docker so it is easier to debug and develop.
+
+1. Navigate to the service directory:
+   ```bash
+   cd document-management-service
+   ```
+2. Start the Spring Boot application:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+   *The service will connect to the local Docker databases and start on `http://localhost:8080`. Liquibase will automatically apply database migrations on startup.*
+
+### Step 3: Running the Document Generator Utility
+
+1. Ensure the Document Management Service is running locally.
+2. Navigate to the generator directory:
+   ```bash
+   cd document-generator-cli
+   ```
+3. Build the utility (if it hasn't been built yet):
+   ```bash
+   mvn clean package
+   ```
+4. Run the utility, passing your desired configuration overrides (e.g., to create 50 documents):
+   ```bash
+   java -jar target/document-generator-cli-1.0-SNAPSHOT.jar --count=50
+   ```
 
 ---
 
-### Batch Get with Pagination
+## Example Workflow
 
-| Method | Address | Description |
-|------|------|-------------|
-| POST | `/api/v1/documents/batch/get?page=0&size=10&sortBy=createdAt&sortDir=desc` | Retrieve a paginated batch of documents by their IDs |
+1. Start the **Document Management Service**. The console logs will immediately indicate that both the **Submit Work worker** and **Approve Order worker** have started and are polling for work.
+2. Run the **Document Generator Utility** instructing it to generate 100 documents:
+   ```bash
+   java -jar document-generator-cli/target/document-generator-cli-1.0-SNAPSHOT.jar --count=100
+   ```
+3. The Document Management Service receives the incoming API calls and persists the documents.
+4. Watch the service logs:
+   - You will see the **Submit Work worker** processing the new batch of documents.
+   - Shortly after, you will see the **Approve Order worker** triggering to handle the approval for the newly submitted documents.
 
-Example Request Body:
-```json
-{
-  "ids": ["uuid1", "uuid2"]
-}
-```
+### Step 4: Accessing Swagger UI
 
-Expected Result:
-Returns the requested documents. Invalid fields return HTTP 400.
+The project includes built-in OpenAPI Swagger documentation. It serves as an interactive GUI where you can explore endpoints, check required schemas, and execute live API requests directly from your browser.
 
-Additional Notes:
-Sorting allowed only by:
-- `title`
-- `createdAt`
-
-## Logging
-
-The logging is structured in a minimalistic format without unnecessary spam.
-- **CLI**: Outputs `[generator] creating document 1/N` and a final summary `[generator] finished: requested=X, success=Y, failed=Z, tookMs=...`.
-- **Workers**: Show the start of the iteration, a short sample of UUIDs (first 3), and a summary of the batch results `[worker] batch result: total=X, success=Y, error=Z, tookMs=...`. If the database is empty, spam is suppressed with the message `no documents found`.
-
-## Test Coverage
-
-The system includes integration-level unit tests covering required business scenarios:
-
-| Requirement | Test |
-|------------|------|
-| Happy-path single approval | BatchJobWorkerTest.processJobs_ShouldProcessSuccessfullyAndCompleteJob |
-| Batch submit | BatchJobServiceTest.createApproveJob_ShouldDeduplicateAndSave |
-| Batch approve with partial results | BatchJobWorkerTest.processJobs_ShouldMarkFailedItemsAndPartialSuccessJob |
-| Approval rollback on registry failure | DocumentApprovalCompensationServiceTest.compensateApprovalRegistryFailure_ShouldCompensateSuccessfully_WhenDocumentApprovedAndRegistryMissing |
-| Compensation retry / failure handling | ApprovalRegistryCompensationWorkerTest.processCompensations_ShouldUpdateStatus_WhenCompensationSucceeds |
-
-Run all tests:
-
-mvn test
+Once the `Document Management Service` is running, you can access the Swagger UI by visiting:
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
